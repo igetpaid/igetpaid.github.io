@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+/* ─── Theme Configuration ─── */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-vk-blue: #2680EB;
+  --color-vk-light: #E4F0FF;
+  --color-gamedev-accent: #ff6b9d;
+  --color-gamedev-secondary: #c084fc;
+  --color-ai-dark: #0a0a23;
+  --color-ai-accent: #4f8cff;
+  --color-ai-card: #12123a;
+  --color-lora-dark: #0d1117;
+  --color-lora-accent: #58a6ff;
+  --color-lora-card: #161b22;
+}
+
+/* ─── Base Styles ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Section Theme Classes ─── */
+.section-hero {
+  --section-bg: #ffffff;
+  --section-accent: #2680EB;
+  --section-accent-light: #E4F0FF;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #64748b;
+  --section-card-bg: #f8faff;
+}
+
+.section-gamedev {
+  --section-bg: #0f0a1a;
+  --section-accent: #ff6b9d;
+  --section-accent-secondary: #c084fc;
+  --section-text: #ffffff;
+  --section-text-secondary: #a5b4fc;
+  --section-card-bg: #1a0f2e;
+}
+
+.section-ai {
+  --section-bg: #0a0a23;
+  --section-accent: #4f8cff;
+  --section-accent-light: #1a1a4e;
+  --section-text: #ffffff;
+  --section-text-secondary: #8892b0;
+  --section-card-bg: #12123a;
+}
+
+.section-lora {
+  --section-bg: #0d1117;
+  --section-accent: #58a6ff;
+  --section-accent-light: #1a2332;
+  --section-text: #f0f6fc;
+  --section-text-secondary: #8b949e;
+  --section-card-bg: #161b22;
+}
+
+.section-projects {
+  --section-bg: #ffffff;
+  --section-accent: #2680EB;
+  --section-accent-light: #E4F0FF;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #64748b;
+  --section-card-bg: #f8faff;
+}
+
+.section-gallery {
+  --section-bg: #f8fafc;
+  --section-accent: #2680EB;
+  --section-accent-light: #E4F0FF;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #64748b;
+  --section-card-bg: #ffffff;
+}
+
+.section-blog {
+  --section-bg: #fefcf5;
+  --section-accent: #d97706;
+  --section-accent-light: #fef3c7;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #78716c;
+  --section-card-bg: #ffffff;
+}
+
+.section-contacts {
+  --section-bg: #ffffff;
+  --section-accent: #2680EB;
+  --section-accent-light: #E4F0FF;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #64748b;
+  --section-card-bg: #f8faff;
+}
+
+/* ─── Utility Classes ─── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--section-accent), var(--section-accent-secondary, var(--section-accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Scroll indicator bounce animation */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
