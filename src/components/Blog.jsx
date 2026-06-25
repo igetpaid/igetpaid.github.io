@@ -9,7 +9,7 @@ export default function Blog() {
   return (
     <section
       id="blog"
-      className="section-blog relative py-24 sm:py-32 overflow-hidden"
+      className="section-blog relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background */}
       <div className="absolute top-20 -right-40 h-[400px] w-[400px] rounded-full bg-amber-500/5 blur-[150px]" />

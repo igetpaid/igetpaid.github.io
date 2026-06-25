@@ -35,7 +35,7 @@ export default function GameDev() {
   return (
     <section
       id="gamedev"
-      className="section-gamedev relative py-24 sm:py-32 overflow-hidden"
+      className="section-gamedev relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background decoration */}
       <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-gamedev-accent/10 blur-[150px]" />

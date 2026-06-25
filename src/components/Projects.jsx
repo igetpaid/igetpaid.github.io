@@ -12,7 +12,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="section-projects relative py-24 sm:py-32 overflow-hidden"
+      className="section-projects relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background */}
       <div className="absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-vk-blue/5 blur-[150px]" />

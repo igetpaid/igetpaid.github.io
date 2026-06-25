@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="section-hero relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="section-hero relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Large blur orbs */}
       <div className="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-vk-blue/5 blur-[200px]" />

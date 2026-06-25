@@ -28,7 +28,7 @@ export default function LoRA() {
   return (
     <section
       id="lora"
-      className="section-lora relative py-24 sm:py-32 overflow-hidden"
+      className="section-lora relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background */}
       <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-lora-accent/5 blur-[200px]" />

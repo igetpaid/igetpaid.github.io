@@ -29,6 +29,36 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--section-bg, #ffffff);
+  transition: background-color 0.3s;
+}
+
+.dark body {
+  background-color: var(--section-bg, #0f1117);
+}
+
+/* ─── Default variables (available everywhere, overridden by sections) ─── */
+:root {
+  --section-bg: #ffffff;
+  --section-accent: #2680EB;
+  --section-accent-light: #E4F0FF;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #475569;
+  --section-card-bg: #f8faff;
+  --section-border: #e2e8f0;
+  --section-muted: #94a3b8;
+}
+
+/* Dark mode defaults for elements outside sections (Header, Footer, body) */
+html.dark {
+  --section-bg: #0f1117;
+  --section-accent: #3b82f6;
+  --section-accent-light: #1e293b;
+  --section-text: #e2e8f0;
+  --section-text-secondary: #94a3b8;
+  --section-card-bg: #1a1d27;
+  --section-border: #334155;
+  --section-muted: #64748b;
 }
 
 /* ─── Section Theme Classes ─── */
@@ -151,6 +181,12 @@ body {
   --section-border: rgba(255, 255, 255, 0.1);
   --section-muted: #94a3b8;
   --section-icon: #64748b;
+}
+
+/* ─── Smooth background transition for all sections ─── */
+.section-hero, .section-gamedev, .section-ai, .section-lora,
+.section-projects, .section-gallery, .section-blog, .section-contacts {
+  transition: background-color 0.3s ease;
 }
 
 /* ─── Utility Classes ─── */

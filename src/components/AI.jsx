@@ -26,7 +26,7 @@ export default function AI() {
   return (
     <section
       id="ai"
-      className="section-ai relative py-24 sm:py-32 overflow-hidden"
+      className="section-ai relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background decorations */}
       <div className="absolute top-1/3 -left-40 h-[500px] w-[500px] rounded-full bg-ai-accent/10 blur-[200px]" />

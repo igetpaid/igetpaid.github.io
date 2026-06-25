@@ -46,7 +46,7 @@ export default function Contacts() {
   return (
     <section
       id="contacts"
-      className="section-contacts relative py-24 sm:py-32 overflow-hidden"
+      className="section-contacts relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background */}
       <div className="absolute -left-40 bottom-0 h-[500px] w-[500px] rounded-full bg-vk-blue/5 blur-[200px]" />

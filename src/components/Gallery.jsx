@@ -113,7 +113,7 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="section-gallery relative py-24 sm:py-32 overflow-hidden"
+      className="section-gallery relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section header */}
