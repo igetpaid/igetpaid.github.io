@@ -8,18 +8,14 @@ const contacts = [
     label: 'VK',
     handle: '@igetpaid',
     href: 'https://vk.com/igetpaid',
-    color: 'text-vk-blue',
-    bgColor: 'bg-vk-blue/10',
-    hoverBg: 'hover:bg-vk-blue/20',
+    iconColor: 'text-vk-blue',
   },
   {
     icon: Code2,
     label: 'GitHub',
     handle: '@igetpaid',
     href: 'https://github.com/igetpaid',
-    color: 'text-[var(--section-text)]',
-    bgColor: 'bg-[var(--section-card-bg)]',
-    hoverBg: 'hover:bg-[var(--section-border)]',
+    iconColor: 'text-[var(--section-text)]',
     customIcon: 'github',
   },
   {
@@ -27,18 +23,14 @@ const contacts = [
     label: 'Telegram',
     handle: '@igetpaid',
     href: '#',
-    color: 'text-sky-500',
-    bgColor: 'bg-sky-50',
-    hoverBg: 'hover:bg-sky-100',
+    iconColor: 'text-sky-500',
   },
   {
     icon: Mail,
     label: 'Email',
     handle: 'igetpaid@ya.ru',
     href: 'mailto:igetpaid@ya.ru',
-    color: 'text-rose-500',
-    bgColor: 'bg-rose-50',
-    hoverBg: 'hover:bg-rose-100',
+    iconColor: 'text-rose-500',
   },
 ]
 
@@ -82,13 +74,13 @@ export default function Contacts() {
               href={contact.href}
               target={contact.href.startsWith('http') ? '_blank' : undefined}
               rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={`group flex items-center gap-4 p-5 rounded-xl ${contact.bgColor} ${contact.hoverBg} transition-all duration-200 text-left`}
+              className={`group flex items-center gap-4 p-5 rounded-xl bg-vk-blue/10 hover:bg-vk-blue/20 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] transition-all duration-200 text-left`}
             >
-              <div className={`w-12 h-12 rounded-xl ${contact.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+              <div className={`w-12 h-12 rounded-xl bg-white/60 dark:bg-black/20 flex items-center justify-center group-hover:scale-110 transition-transform`}>
                 {contact.customIcon === 'github' ? (
-                <GitHubIcon className={`w-5 h-5 ${contact.color}`} />
+                <GitHubIcon className={`w-5 h-5 ${contact.iconColor}`} />
               ) : (
-                <contact.icon className={`w-5 h-5 ${contact.color}`} />
+                <contact.icon className={`w-5 h-5 ${contact.iconColor}`} />
               )}
               </div>
               <div>
