@@ -46,7 +46,7 @@ export default function Header() {
       : 'bg-white/95 dark:bg-slate-900/95'
 
   // Active nav item: always visible no matter scroll state or section
-  const activeNavClass = 'bg-[--section-accent] text-white shadow-sm'
+  const activeNavClass = 'bg-vk-blue text-white shadow-sm'
   const inactiveNavClass = `${textColor} hover:bg-black/5 dark:hover:bg-white/10`
 
   return (
@@ -59,7 +59,7 @@ export default function Header() {
           href="#hero"
           className={`text-lg font-bold tracking-tight transition-colors ${textColor}`}
         >
-          <span className="text-[--section-accent]">iget</span>paid
+          <span className="text-vk-blue">iget</span>paid
         </a>
 
         {/* Desktop Nav */}

@@ -59,11 +59,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-[--section-text] leading-[1.1]"
+          className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-[var(--section-text)] leading-[1.1]"
         >
           Игорь Тенгель
           <br />
-          <span className="text-[--section-accent]">Разработчик</span>
+          <span className="text-[var(--section-accent)]">Разработчик</span>
         </motion.h1>
 
         {/* Description */}
@@ -71,7 +71,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-lg sm:text-xl text-[--section-text-secondary] max-w-2xl mx-auto leading-relaxed"
+          className="mt-6 text-lg sm:text-xl text-[var(--section-text-secondary)] max-w-2xl mx-auto leading-relaxed"
         >
           Делаю десктоп-приложения, игры, автоматизации и экспериментирую с нейросетями.
           Форкаю, улучшаю, собираю в облаке — и рассказываю об этом.
@@ -86,7 +86,7 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[--section-accent] text-white font-semibold text-base shadow-lg shadow-[--section-accent]/25 hover:shadow-xl hover:shadow-[--section-accent]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--section-accent)] text-white font-semibold text-base shadow-lg shadow-[var(--section-accent)]/25 hover:shadow-xl hover:shadow-[var(--section-accent)]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
             <ExternalLink className="w-4 h-4" />
             Мои проекты
@@ -95,7 +95,7 @@ export default function Hero() {
             href="https://github.com/igetpaid"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[--section-text-secondary]/20 text-[--section-text-secondary] font-semibold text-base hover:border-[--section-accent]/30 hover:text-[--section-accent] hover:bg-[--section-accent-light] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[var(--section-text-secondary)]/20 text-[var(--section-text-secondary)] font-semibold text-base hover:border-[var(--section-accent)]/30 hover:text-[var(--section-accent)] hover:bg-[var(--section-accent-light)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
             <GitHubIcon className="w-4 h-4" />
             GitHub
@@ -107,13 +107,13 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 flex items-center justify-center gap-6 text-sm text-[--section-text-secondary]"
+          className="mt-8 flex items-center justify-center gap-6 text-sm text-[var(--section-text-secondary)]"
         >
           <a
             href="https://vk.com/igetpaid"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[--section-accent] transition-colors"
+            className="hover:text-[var(--section-accent)] transition-colors"
           >
             VK
           </a>
@@ -122,7 +122,7 @@ export default function Hero() {
             href="https://github.com/igetpaid"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[--section-accent] transition-colors"
+            className="hover:text-[var(--section-accent)] transition-colors"
           >
             GitHub
           </a>

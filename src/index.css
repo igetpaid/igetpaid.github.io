@@ -17,6 +17,9 @@
   --color-lora-card: #161b22;
 }
 
+/* ─── Dark Mode: use .dark class instead of prefers-color-scheme ─── */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ─── Base Styles ─── */
 html {
   scroll-behavior: smooth;

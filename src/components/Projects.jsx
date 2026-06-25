@@ -29,10 +29,10 @@ export default function Projects() {
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vk-blue/10 text-vk-blue text-xs font-semibold tracking-wider uppercase mb-4">
             Projects
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[--section-text] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
             Проекты
           </h2>
-          <p className="mt-4 text-lg text-[--section-text-secondary] max-w-2xl">
+          <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-2xl">
             То, что я сделал и чем могу гордиться. Open source, десктоп, автоматизация.
           </p>
         </motion.div>
@@ -52,7 +52,7 @@ export default function Projects() {
             return (
               <div
                 key={project.id}
-                className="group p-6 sm:p-8 rounded-2xl bg-[--section-card-bg] border border-[--section-border] hover:border-vk-blue/20 hover:shadow-lg hover:shadow-vk-blue/5 transition-all duration-300"
+                className="group p-6 sm:p-8 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-vk-blue/20 hover:shadow-lg hover:shadow-vk-blue/5 transition-all duration-300"
               >
                 <div className="flex flex-col sm:flex-row items-start gap-6">
                   {/* Placeholder image */}
@@ -72,11 +72,11 @@ export default function Projects() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-4 flex-wrap">
                       <div>
-                        <h3 className="text-xl font-bold text-[--section-text] group-hover:text-vk-blue transition-colors">
+                        <h3 className="text-xl font-bold text-[var(--section-text)] group-hover:text-vk-blue transition-colors">
                           {project.title}
                         </h3>
                         {project.subtitle && (
-                          <p className="text-sm text-[--section-text-secondary] mt-0.5">{project.subtitle}</p>
+                          <p className="text-sm text-[var(--section-text-secondary)] mt-0.5">{project.subtitle}</p>
                         )}
                       </div>
                       {/* Status badge */}
@@ -88,7 +88,7 @@ export default function Projects() {
                       )}
                     </div>
 
-                    <p className="mt-3 text-sm text-[--section-text] leading-relaxed">
+                    <p className="mt-3 text-sm text-[var(--section-text)] leading-relaxed">
                       {project.description}
                     </p>
 
@@ -97,7 +97,7 @@ export default function Projects() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-[--section-card-bg] text-[--section-text]"
+                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-[var(--section-card-bg)] text-[var(--section-text)]"
                         >
                           {tag}
                         </span>
@@ -111,7 +111,7 @@ export default function Projects() {
                           href={project.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-[--section-text] hover:text-vk-blue transition-colors"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--section-text)] hover:text-vk-blue transition-colors"
                         >
                           <GitHubIcon className="w-4 h-4" />
                           Исходники
@@ -122,7 +122,7 @@ export default function Projects() {
                           href={project.links.release}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-[--section-text] hover:text-vk-blue transition-colors"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--section-text)] hover:text-vk-blue transition-colors"
                         >
                           <ExternalLink className="w-4 h-4" />
                           Скачать
@@ -141,10 +141,10 @@ export default function Projects() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-12 text-center py-16 rounded-2xl border border-dashed border-[--section-border]"
+            className="mt-12 text-center py-16 rounded-2xl border border-dashed border-[var(--section-border)]"
           >
-            <FileCode2 className="w-12 h-12 text-[--section-muted] mx-auto mb-4" />
-            <p className="text-[--section-text-secondary] text-lg">Проекты скоро появятся</p>
+            <FileCode2 className="w-12 h-12 text-[var(--section-muted)] mx-auto mb-4" />
+            <p className="text-[var(--section-text-secondary)] text-lg">Проекты скоро появятся</p>
           </motion.div>
         )}
       </div>

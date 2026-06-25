@@ -17,9 +17,9 @@ const contacts = [
     label: 'GitHub',
     handle: '@igetpaid',
     href: 'https://github.com/igetpaid',
-    color: 'text-[--section-text]',
-    bgColor: 'bg-[--section-card-bg]',
-    hoverBg: 'hover:bg-[--section-border]',
+    color: 'text-[var(--section-text)]',
+    bgColor: 'bg-[var(--section-card-bg)]',
+    hoverBg: 'hover:bg-[var(--section-border)]',
     customIcon: 'github',
   },
   {
@@ -59,10 +59,10 @@ export default function Contacts() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[--section-text] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
             Связаться со мной
           </h2>
-          <p className="mt-4 text-lg text-[--section-text-secondary] max-w-xl mx-auto">
+          <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-xl mx-auto">
             Если хочешь что-то предложить, обсудить или просто сказать «привет» — 
             пиши в любой из этих каналов.
           </p>
@@ -92,8 +92,8 @@ export default function Contacts() {
               )}
               </div>
               <div>
-                <p className="text-sm font-semibold text-[--section-text]">{contact.label}</p>
-                <p className="text-sm text-[--section-text-secondary]">{contact.handle}</p>
+                <p className="text-sm font-semibold text-[var(--section-text)]">{contact.label}</p>
+                <p className="text-sm text-[var(--section-text-secondary)]">{contact.handle}</p>
               </div>
             </a>
           ))}
@@ -105,7 +105,7 @@ export default function Contacts() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 text-sm text-[--section-text-secondary]"
+          className="mt-12 text-sm text-[var(--section-text-secondary)]"
         >
           Открыт к сотрудничеству и интересным проектам
         </motion.p>

@@ -72,8 +72,8 @@ function GalleryImage({ image }) {
 
   if (errored) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-[--section-card-bg]">
-        <ImageIcon className="w-8 h-8 text-[--section-muted]" />
+      <div className="w-full h-full flex items-center justify-center bg-[var(--section-card-bg)]">
+        <ImageIcon className="w-8 h-8 text-[var(--section-muted)]" />
       </div>
     )
   }
@@ -123,13 +123,13 @@ export default function Gallery() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[--section-accent]/10 text-[--section-accent] text-xs font-semibold tracking-wider uppercase mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--section-accent)]/10 text-[var(--section-accent)] text-xs font-semibold tracking-wider uppercase mb-4">
             Gallery
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[--section-text] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
             Галерея
           </h2>
-          <p className="mt-4 text-lg text-[--section-text-secondary] max-w-2xl">
+          <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-2xl">
             Арты, скриншоты, визуальные эксперименты.
           </p>
         </motion.div>
@@ -139,12 +139,12 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-12 text-center py-16 rounded-2xl border border-dashed border-[--section-border]"
+            className="mt-12 text-center py-16 rounded-2xl border border-dashed border-[var(--section-border)]"
           >
-            <ImageIcon className="w-12 h-12 text-[--section-muted] mx-auto mb-4" />
-            <p className="text-[--section-text-secondary] text-lg">Галерея пуста</p>
-            <p className="text-[--section-text-secondary] text-sm mt-1">
-              Добавь изображения в <code className="text-xs bg-[--section-card-bg] px-1.5 py-0.5 rounded">public/gallery/</code>
+            <ImageIcon className="w-12 h-12 text-[var(--section-muted)] mx-auto mb-4" />
+            <p className="text-[var(--section-text-secondary)] text-lg">Галерея пуста</p>
+            <p className="text-[var(--section-text-secondary)] text-sm mt-1">
+              Добавь изображения в <code className="text-xs bg-[var(--section-card-bg)] px-1.5 py-0.5 rounded">public/gallery/</code>
             </p>
           </motion.div>
         ) : (
@@ -163,8 +163,8 @@ export default function Gallery() {
                   onClick={() => { setActiveAlbum(album.id); setLightboxIndex(null) }}
                   className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                     activeAlbum === album.id
-                      ? 'bg-[--section-accent] text-white shadow-md shadow-[--section-accent]/20'
-                      : 'bg-[--section-card-bg] text-[--section-text] border border-[--section-border] hover:border-[--section-accent]/30 hover:text-[--section-accent]'
+                      ? 'bg-[var(--section-accent)] text-white shadow-md shadow-[var(--section-accent)]/20'
+                      : 'bg-[var(--section-card-bg)] text-[var(--section-text)] border border-[var(--section-border)] hover:border-[var(--section-accent)]/30 hover:text-[var(--section-accent)]'
                   }`}
                 >
                   <Album className="w-4 h-4" />
@@ -182,13 +182,13 @@ export default function Gallery() {
                 transition={{ duration: 0.4 }}
                 className="mt-8"
               >
-                <p className="text-sm text-[--section-text-secondary] mb-4">{currentAlbum.description}</p>
+                <p className="text-sm text-[var(--section-text-secondary)] mb-4">{currentAlbum.description}</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                   {currentAlbum.images.map((image, i) => (
                     <button
                       key={i}
                       onClick={() => openLightbox(i)}
-                      className="group aspect-square rounded-xl overflow-hidden bg-[--section-card-bg] border border-[--section-border] hover:border-[--section-accent]/30 hover:shadow-lg transition-all duration-200"
+                      className="group aspect-square rounded-xl overflow-hidden bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-[var(--section-accent)]/30 hover:shadow-lg transition-all duration-200"
                     >
                       <GalleryImage image={image} />
                       {image.title && (
