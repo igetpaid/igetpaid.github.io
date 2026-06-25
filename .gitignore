@@ -10,3 +10,7 @@ Thumbs.db
 *.local
 .idea/
 .vscode/
+
+# Personal project documentation — not for public
+.opencode/
+portfolio/
