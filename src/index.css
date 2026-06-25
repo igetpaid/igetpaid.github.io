@@ -75,15 +75,15 @@ html.dark {
 }
 
 .section-gamedev {
-  --section-bg: #fff5f7;
-  --section-accent: #ff6b9d;
-  --section-accent-secondary: #c084fc;
+  --section-bg: #ffffff;
+  --section-accent: #2680EB;
+  --section-accent-light: #E4F0FF;
   --section-text: #1a1a2e;
-  --section-text-secondary: #5b4a6f;
-  --section-card-bg: #ffffff;
-  --section-border: #f1d6e8;
-  --section-muted: #a78ba7;
-  --section-icon: #d4b8cc;
+  --section-text-secondary: #475569;
+  --section-card-bg: #f8faff;
+  --section-border: #e2e8f0;
+  --section-muted: #94a3b8;
+  --section-icon: #cbd5e1;
 }
 
 .section-ai {
