@@ -1,16 +1,47 @@
-# React + Vite
+# igetpaid.github.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> Добро пожаловать на мой сайт-портфолио. Здесь собраны проекты по разработке, GameDev, AI/нейросетям, LoRA и автоматизации.
 
-Currently, two official plugins are available:
+🔗 **Сайт:** [igetpaid.github.io](https://igetpaid.github.io)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## О проекте
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Личный сайт, который объединяет все мои направления деятельности. Построен на React, собирается статикой и автоматически деплоится на GitHub Pages.
 
-## Expanding the Oxlint configuration
+### Технологии
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- **React 19** + **Vite 8**
+- **Tailwind CSS 4**
+- **Framer Motion**
+- **GitHub Actions** (авто-деплой)
+
+## Разделы сайта
+
+- **Hero** — главная
+- **GameDev** — игровые проекты (Unity, Godot)
+- **AI / Нейросети** — ML, диффузия, LLM
+- **LoRA** — LoRA-модели и тренировки
+- **Проекты** — портфолио работ
+- **Галерея** — арты, скриншоты
+- **Блог** — заметки и статьи
+- **Контакты** — VK, GitHub, Telegram, Email
+
+## Локальный запуск
+
+```bash
+npm install
+npm run dev
+```
+
+Сборка для продакшена:
+
+```bash
+npm run build
+# или двойной клик по build.bat
+```
+
+## Деплой
+
+При каждом пуше в `main` GitHub Actions автоматически собирает и деплоит сайт.
