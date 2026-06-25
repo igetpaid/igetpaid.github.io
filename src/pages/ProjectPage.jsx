@@ -20,7 +20,15 @@ import {
 } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import VKIcon from '../components/icons/VKIcon'
+import GitHubIcon from '../components/icons/GitHubIcon'
 import { getProjectDetails } from '../data/projectDetails'
+
+const SocialIcon = ({ url }) => {
+  if (url.includes('vk.com')) return <VKIcon className="w-4 h-4" />
+  if (url.includes('github.com')) return <GitHubIcon className="w-4 h-4" />
+  return null
+}
 
 export default function ProjectPage() {
   const { projectId } = useParams()
@@ -298,8 +306,8 @@ export default function ProjectPage() {
                 </motion.section>
               )}
 
-              {/* Reviews */}
-              {project.reviews && project.reviews.length > 0 && (
+              {/* Comments */}
+              {project.comments && project.comments.length > 0 && (
                 <motion.section
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -308,34 +316,32 @@ export default function ProjectPage() {
                 >
                   <h2 className="text-2xl font-bold text-[var(--section-text)] mb-6 flex items-center gap-3">
                     <span className="w-1 h-6 rounded-full bg-[var(--section-accent)]" />
-                    Отзывы
+                    Комментарии
                   </h2>
                   <div className="space-y-4">
-                    {project.reviews.map((review) => (
+                    {project.comments.map((comment) => (
                       <div
-                        key={review.id}
+                        key={comment.id}
                         className="p-5 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
                       >
                         <div className="flex items-start gap-3">
                           <Quote className="w-5 h-5 text-[var(--section-accent)]/40 shrink-0 mt-1" />
                           <div className="flex-1 min-w-0">
                             <p className="text-[var(--section-text-secondary)] italic leading-relaxed">
-                              «{review.text}»
+                              «{comment.text}»
                             </p>
                             <div className="mt-3 flex items-center gap-3 flex-wrap">
                               <a
-                                href={review.authorLink}
+                                href={comment.authorLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-sm font-medium text-[var(--section-accent)] hover:underline"
+                                className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--section-accent)] hover:underline"
                               >
-                                {review.author}
+                                <SocialIcon url={comment.authorLink} />
+                                {comment.author}
                               </a>
                               <span className="text-xs text-[var(--section-muted)]">
-                                {review.role}
-                              </span>
-                              <span className="text-xs text-[var(--section-muted)]">
-                                {formatDate(review.date)}
+                                {formatDate(comment.date)}
                               </span>
                             </div>
                           </div>
@@ -343,6 +349,14 @@ export default function ProjectPage() {
                       </div>
                     ))}
                   </div>
+
+                  {/* Leave a comment stub */}
+                  <button
+                    onClick={() => alert('Форма комментариев появится позже')}
+                    className="mt-6 w-full py-3 px-4 rounded-xl border-2 border-dashed border-[var(--section-border)] text-[var(--section-text-secondary)] text-sm font-medium hover:border-[var(--section-accent)]/40 hover:text-[var(--section-accent)] transition-colors"
+                  >
+                    + Оставить комментарий
+                  </button>
                 </motion.section>
               )}
             </div>

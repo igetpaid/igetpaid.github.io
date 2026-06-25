@@ -2,10 +2,19 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Gamepad2, Code2, Sparkles, ArrowRight } from 'lucide-react'
 import { projects } from '../data/projects'
+import PreviewSlideshow from './PreviewSlideshow'
 
 const gameDevProjects = projects.filter((p) =>
   p.tags.some((t) => t.toLowerCase().includes('gamedev') || t === 'Godot 4')
 )
+
+const hardresetPreviews = [
+  '/gallery/hardreset/preview/1 - главное меню.jpg',
+  '/gallery/hardreset/preview/2 - заставка начальная 2.png',
+  '/gallery/hardreset/preview/3 - уникальный дизайн корпуса 1.jpg',
+  '/gallery/hardreset/preview/4 - минигра - замена старого вентилятора.jpg',
+  '/gallery/hardreset/preview/5 - финальная минигра - нужно воремя нажать ЛКМ чтобы убить противника .png',
+]
 
 const highlights = [
   {
@@ -91,16 +100,24 @@ export default function GameDev() {
               to={`/gamedev/${game.id}`}
               className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.07] transition-all duration-300"
             >
-              {/* Placeholder image area */}
-              <div className="aspect-video rounded-xl bg-gradient-to-br from-gamedev-accent/20 to-gamedev-secondary/20 mb-4 flex items-center justify-center overflow-hidden">
-                {game.image ? (
+              {/* Preview slideshow */}
+              <div className="aspect-video rounded-xl bg-gradient-to-br from-gamedev-accent/20 to-gamedev-secondary/20 mb-4 overflow-hidden">
+                {game.id === 'hardreset' ? (
+                  <PreviewSlideshow
+                    images={hardresetPreviews}
+                    interval={2000}
+                    className="w-full h-full rounded-xl"
+                  />
+                ) : game.image ? (
                   <img
                     src={game.image}
                     alt={game.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 ) : (
-                  <Gamepad2 className="w-12 h-12 text-white/20 group-hover:scale-110 transition-transform" />
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Gamepad2 className="w-12 h-12 text-white/20 group-hover:scale-110 transition-transform" />
+                  </div>
                 )}
               </div>
 

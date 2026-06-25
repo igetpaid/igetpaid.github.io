@@ -2,7 +2,16 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft, Gamepad2, ExternalLink } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import PreviewSlideshow from '../components/PreviewSlideshow'
 import { projects } from '../data/projects'
+
+const hardresetPreviews = [
+  '/gallery/hardreset/preview/1 - главное меню.jpg',
+  '/gallery/hardreset/preview/2 - заставка начальная 2.png',
+  '/gallery/hardreset/preview/3 - уникальный дизайн корпуса 1.jpg',
+  '/gallery/hardreset/preview/4 - минигра - замена старого вентилятора.jpg',
+  '/gallery/hardreset/preview/5 - финальная минигра - нужно воремя нажать ЛКМ чтобы убить противника .png',
+]
 
 export default function GameDevPage() {
   const gameDevProjects = projects.filter((p) =>
@@ -53,16 +62,24 @@ export default function GameDevPage() {
                   className="group relative bg-[var(--section-card-bg)] border border-[var(--section-border)] rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-[var(--section-accent)]/30 hover:shadow-lg"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start gap-6">
-                    {/* Thumbnail placeholder */}
-                    <div className="w-full sm:w-48 h-32 rounded-xl bg-gradient-to-br from-[var(--section-accent)]/20 to-[var(--section-accent-secondary)]/20 flex items-center justify-center shrink-0 overflow-hidden">
-                      {project.image ? (
+                    {/* Preview slideshow */}
+                    <div className="w-full sm:w-48 h-32 rounded-xl bg-gradient-to-br from-[var(--section-accent)]/20 to-[var(--section-accent-secondary)]/20 shrink-0 overflow-hidden">
+                      {project.id === 'hardreset' ? (
+                        <PreviewSlideshow
+                          images={hardresetPreviews}
+                          interval={2000}
+                          className="w-full h-full"
+                        />
+                      ) : project.image ? (
                         <img
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <Gamepad2 className="w-12 h-12 text-[var(--section-accent)]/40" />
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Gamepad2 className="w-12 h-12 text-[var(--section-accent)]/40" />
+                        </div>
                       )}
                     </div>
 
