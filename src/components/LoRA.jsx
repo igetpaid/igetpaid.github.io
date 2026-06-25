@@ -54,10 +54,10 @@ export default function LoRA() {
           </span>
           <div className="flex flex-col sm:flex-row sm:items-end gap-4 justify-between">
             <div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
                 LoRA модели
               </h2>
-              <p className="mt-4 text-lg text-slate-400 max-w-2xl">
+              <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-2xl">
                 Low-Rank Adaptation — дообучаю модели эффективно, без полного fine-tuning&apos;a.
                 Меньше ресурсов, те же возможности.
               </p>
@@ -80,7 +80,7 @@ export default function LoRA() {
                 <div className="hidden lg:block absolute top-8 left-[calc(100%-8px)] w-[calc(100%-3rem)] h-px bg-gradient-to-r from-lora-accent/30 to-transparent" />
               )}
 
-              <div className="p-6 rounded-2xl bg-lora-card border border-white/[0.06] hover:border-lora-accent/15 transition-all duration-300">
+              <div className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-lora-accent/15 transition-all duration-300">
                 {/* Step number */}
                 <div className="flex items-center gap-3 mb-4">
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-lora-accent/10 text-lora-accent text-sm font-bold">
@@ -89,8 +89,8 @@ export default function LoRA() {
                   <step.icon className="w-5 h-5 text-lora-accent/60" />
                 </div>
 
-                <h3 className="text-base font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{step.description}</p>
+                <h3 className="text-base font-semibold text-[var(--section-text)] mb-2">{step.title}</h3>
+                <p className="text-sm text-[var(--section-text-secondary)] leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}
@@ -102,9 +102,9 @@ export default function LoRA() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 p-6 rounded-2xl bg-lora-card/50 border border-white/[0.06]"
+          className="mt-12 p-6 rounded-2xl bg-[var(--section-card-bg)]/50 border border-[var(--section-border)]"
         >
-          <p className="text-sm text-slate-400 mb-3">Инструменты, с которыми работаю:</p>
+          <p className="text-sm text-[var(--section-text-secondary)] mb-3">Инструменты, с которыми работаю:</p>
           <div className="flex flex-wrap gap-2">
             {['Automatic1111', 'ComfyUI', 'Kohya', 'Flux', 'Python', 'CUDA'].map((tool) => (
               <span

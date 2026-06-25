@@ -59,10 +59,10 @@ export default function GameDev() {
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gamedev-accent/15 text-gamedev-accent text-xs font-semibold tracking-wider uppercase mb-4">
             GameDev
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
             Игры, которые я делаю
           </h2>
-          <p className="mt-4 text-lg text-slate-400 max-w-2xl">
+          <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-2xl">
             От проектов в одиночку до командных — всё с душой и вниманием к деталям.
           </p>
         </motion.div>
@@ -78,10 +78,10 @@ export default function GameDev() {
           {highlights.map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10"
+              className="flex items-center gap-3 p-4 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
             >
               <item.icon className="w-5 h-5 text-gamedev-accent shrink-0" />
-              <span className="text-sm text-slate-300">{item.text}</span>
+              <span className="text-sm text-[var(--section-text-secondary)]">{item.text}</span>
             </div>
           ))}
         </motion.div>
@@ -98,7 +98,7 @@ export default function GameDev() {
             <Link
               key={game.id}
               to={`/gamedev/${game.id}`}
-              className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.07] transition-all duration-300"
+              className="group relative p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:bg-[var(--section-card-bg)]/80 transition-all duration-300"
             >
               {/* Preview slideshow */}
               <div className="aspect-video rounded-xl bg-gradient-to-br from-gamedev-accent/20 to-gamedev-secondary/20 mb-4 overflow-hidden">
@@ -123,10 +123,10 @@ export default function GameDev() {
 
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-gamedev-accent transition-colors">
+                  <h3 className="text-xl font-bold text-[var(--section-text)] group-hover:text-gamedev-accent transition-colors">
                     {game.title}
                   </h3>
-                  <p className="mt-1 text-sm text-slate-400 line-clamp-2">{game.subtitle}</p>
+                  <p className="mt-1 text-sm text-[var(--section-text-secondary)] line-clamp-2">{game.subtitle}</p>
                 </div>
                 <span className="shrink-0 px-2.5 py-1 rounded-full text-xs font-medium bg-gamedev-accent/15 text-gamedev-accent whitespace-nowrap">
                   {game.status === 'completed' ? 'Завершён' : 'В разработке'}
@@ -137,7 +137,7 @@ export default function GameDev() {
                 {game.tags.slice(0, 3).map((t) => (
                   <span
                     key={t}
-                    className="px-2.5 py-1 rounded-md text-xs font-medium bg-white/5 text-slate-400"
+                    className="px-2.5 py-1 rounded-md text-xs font-medium bg-[var(--section-card-bg)] text-[var(--section-text-secondary)]"
                   >
                     {t}
                   </span>
@@ -155,9 +155,9 @@ export default function GameDev() {
             viewport={{ once: true }}
             className="mt-12 text-center py-16 rounded-2xl border border-dashed border-white/10"
           >
-            <Gamepad2 className="w-12 h-12 text-white/20 mx-auto mb-4" />
-            <p className="text-slate-500 text-lg">Скоро здесь появятся игровые проекты</p>
-            <p className="text-slate-600 text-sm mt-1">А пока — изучаю движки и механики</p>
+            <Gamepad2 className="w-12 h-12 text-[var(--section-muted)] mx-auto mb-4" />
+            <p className="text-[var(--section-text-secondary)] text-lg">Скоро здесь появятся игровые проекты</p>
+            <p className="text-[var(--section-muted)] text-sm mt-1">А пока — изучаю движки и механики</p>
           </motion.div>
         )}
 

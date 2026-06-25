@@ -40,8 +40,10 @@ export default function Contacts() {
       id="contacts"
       className="section-contacts relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
-      {/* Decorative: blur orbs */}
-      <div className="absolute -left-40 bottom-0 h-[500px] w-[500px] rounded-full bg-vk-blue/5 blur-[200px]" />
+      {/* Decorative: blue gradient blobs */}
+      <div className="absolute -left-60 bottom-10 h-[700px] w-[700px] rounded-full bg-gradient-to-br from-vk-blue/15 via-vk-blue/5 to-transparent blur-[180px]" />
+      <div className="absolute -right-60 -top-40 h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-vk-blue/12 via-blue-400/5 to-transparent blur-[160px]" />
+      <div className="absolute right-1/4 top-1/3 h-[250px] w-[250px] rounded-full bg-vk-blue/5 blur-[100px]" />
 
       {/* Decorative: grid pattern */}
       <svg

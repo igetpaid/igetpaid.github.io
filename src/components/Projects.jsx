@@ -14,9 +14,10 @@ export default function Projects() {
       id="projects"
       className="section-projects relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
-      {/* Decorative: blur orbs */}
-      <div className="absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-vk-blue/5 blur-[150px]" />
-      <div className="absolute -right-40 bottom-20 h-[300px] w-[300px] rounded-full bg-vk-blue/3 blur-[100px]" />
+      {/* Decorative: blue gradient blobs */}
+      <div className="absolute -left-60 -top-40 h-[700px] w-[700px] rounded-full bg-gradient-to-br from-vk-blue/15 via-vk-blue/5 to-transparent blur-[180px]" />
+      <div className="absolute -right-60 -bottom-40 h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-vk-blue/12 via-blue-400/5 to-transparent blur-[160px]" />
+      <div className="absolute left-1/3 bottom-10 h-[300px] w-[300px] rounded-full bg-vk-blue/5 blur-[120px]" />
 
       {/* Decorative: grid pattern */}
       <svg
