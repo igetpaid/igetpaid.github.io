@@ -4,7 +4,6 @@ const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
   const [activeSection, setActiveSection] = useState('hero')
-  const [headerStyle, setHeaderStyle] = useState('light')
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   // Apply .dark class to <html> when dark mode is active
@@ -12,9 +11,8 @@ export function ThemeProvider({ children }) {
     document.documentElement.classList.toggle('dark', isDarkMode)
   }, [isDarkMode])
 
-  const updateSection = useCallback((sectionId, style) => {
+  const updateSection = useCallback((sectionId) => {
     setActiveSection(sectionId)
-    setHeaderStyle(style)
   }, [])
 
   const toggleDarkMode = useCallback(() => {
@@ -22,7 +20,7 @@ export function ThemeProvider({ children }) {
   }, [])
 
   return (
-    <ThemeContext.Provider value={{ activeSection, headerStyle, isDarkMode, updateSection, toggleDarkMode }}>
+    <ThemeContext.Provider value={{ activeSection, isDarkMode, updateSection, toggleDarkMode }}>
       {children}
     </ThemeContext.Provider>
   )

@@ -21,7 +21,7 @@ const navItems = [
 ]
 
 export default function Header() {
-  const { activeSection, headerStyle, isDarkMode, toggleDarkMode } = useTheme()
+  const { activeSection, isDarkMode, toggleDarkMode } = useTheme()
   const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -53,36 +53,30 @@ export default function Header() {
     setMobileMenuOpen(false)
   }, [location.pathname])
 
-  // Section pages with dark theme force dark header
-  const darkSectionRoutes = ['gamedev']
-  const isDarkSectionPage = !isLanding && darkSectionRoutes.includes(currentSection)
-  const effectiveHeaderStyle = isDarkSectionPage ? 'dark' : headerStyle
-
-  const isDark = effectiveHeaderStyle === 'dark'
+  // ─── Header style derived ONLY from global dark mode toggle ──────────
+  // Lesson 11: never use section-based headerStyle — it breaks when
+  // sections change their light-theme backgrounds independently.
+  const isDark = isDarkMode
   const showBg = scrolled || mobileMenuOpen
 
-  // On dark section pages (gamedev, etc.), header is always dark, no matter the toggle
+  // Text color: always visible against the current page background
+  // Light mode → dark text (page bg is white/light)
+  // Dark mode  → light text (page bg is dark)
   const textColor = showBg
-    ? isDarkSectionPage
-      ? 'text-slate-300'
-      : 'text-slate-700 dark:text-slate-300'
+    ? 'text-slate-700 dark:text-slate-300'
     : isDark
       ? 'text-white'
-      : 'text-slate-900 dark:text-slate-100'
+      : 'text-slate-900'
 
   const bgClass = showBg
-    ? isDarkSectionPage
-      ? 'bg-slate-900/90 backdrop-blur-md shadow-sm'
-      : 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm'
+    ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm'
     : 'bg-transparent'
 
   const mobileBgClass = showBg
-    ? isDarkSectionPage
-      ? 'bg-slate-900/95'
-      : 'bg-white/95 dark:bg-slate-900/95'
+    ? 'bg-white/95 dark:bg-slate-900/95'
     : isDark
       ? 'bg-slate-900/95'
-      : 'bg-white/95 dark:bg-slate-900/95'
+      : 'bg-white/95'
 
   const activeNavClass = 'bg-vk-blue text-white shadow-sm'
   const inactiveNavClass = `${textColor} hover:bg-black/5 dark:hover:bg-white/10`
@@ -189,12 +183,10 @@ export default function Header() {
             onClick={toggleDarkMode}
             className={`p-2 rounded-lg transition-all duration-200 ${
               showBg
-                ? isDarkSectionPage
-                  ? 'text-slate-400 hover:bg-white/10'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                 : isDark
                   ? 'text-white/80 hover:bg-white/10'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  : 'text-slate-600 hover:bg-slate-100'
             }`}
             aria-label={isDarkMode ? 'Светлая тема' : 'Тёмная тема'}
             title={isDarkMode ? 'Светлая тема' : 'Тёмная тема'}
@@ -207,12 +199,10 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`md:hidden p-2 rounded-lg transition-colors ${
               showBg
-                ? isDarkSectionPage
-                  ? 'text-slate-400 hover:bg-white/10'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                 : isDark
                   ? 'text-white hover:bg-white/10'
-                  : 'text-slate-900 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  : 'text-slate-900 hover:bg-slate-100'
             }`}
             aria-label="Меню"
           >

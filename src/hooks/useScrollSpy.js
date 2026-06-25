@@ -15,7 +15,7 @@ export function useScrollSpy() {
             const sectionId = entry.target.id
             const section = sections.find((s) => s.id === sectionId)
             if (section) {
-              updateSection(section.id, section.headerStyle)
+              updateSection(section.id)
             }
           }
         }
