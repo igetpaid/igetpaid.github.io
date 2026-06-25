@@ -15,16 +15,15 @@ export const projects = [
     image: null, // будет добавлено позже
     featured: true,
   },
-  // Добавляй новые проекты сюда:
-  // {
-  //   id: 'my-game',
-  //   title: 'My Game',
-  //   subtitle: 'Короткое описание',
-  //   description: 'Подробное описание проекта...',
-  //   tags: ['Unity', 'C#', 'Blender'],
-  //   links: { github: '...' },
-  //   status: 'active',
-  //   image: null,
-  //   featured: false,
-  // },
+  {
+    id: 'hardreset',
+    title: 'HardReset!',
+    subtitle: 'Симулятор компьютерного мастера',
+    description: '2D-симулятор компьютерного мастера с элементами драмы на Godot 4. Чини компьютеры, зарабатывай опыт, перепроходи турнир — 2 концовки. Drag-and-drop, 5 уникальных персонажей, анимации, автосохранение.',
+    tags: ['Godot 4', 'GDScript', 'Photoshop', 'GameDev'],
+    links: {},
+    status: 'completed',
+    image: null,
+    featured: true,
+  },
 ]

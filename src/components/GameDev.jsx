@@ -1,20 +1,11 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Gamepad2, Code2, Sparkles } from 'lucide-react'
+import { Gamepad2, Code2, Sparkles, ArrowRight } from 'lucide-react'
+import { projects } from '../data/projects'
 
-const games = [
-  {
-    title: 'Project 1',
-    description: 'Расскажи о своей игре здесь. Добавь скриншот, стек технологий, ссылки.',
-    tech: ['Unity', 'C#', 'Blender'],
-    status: 'В разработке',
-  },
-  // {
-  //   title: 'Project 2',
-  //   description: '...',
-  //   tech: ['Godot', 'GDScript'],
-  //   status: 'Готово',
-  // },
-]
+const gameDevProjects = projects.filter((p) =>
+  p.tags.some((t) => t.toLowerCase().includes('gamedev') || t === 'Godot 4')
+)
 
 const highlights = [
   {
@@ -86,7 +77,7 @@ export default function GameDev() {
           ))}
         </motion.div>
 
-        {/* Game Cards */}
+        {/* Project Cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,28 +85,39 @@ export default function GameDev() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {games.map((game, i) => (
-            <div
-              key={i}
+          {gameDevProjects.map((game) => (
+            <Link
+              key={game.id}
+              to={`/gamedev/${game.id}`}
               className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.07] transition-all duration-300"
             >
               {/* Placeholder image area */}
-              <div className="aspect-video rounded-xl bg-gradient-to-br from-gamedev-accent/20 to-gamedev-secondary/20 mb-4 flex items-center justify-center">
-                <Gamepad2 className="w-12 h-12 text-white/20 group-hover:scale-110 transition-transform" />
+              <div className="aspect-video rounded-xl bg-gradient-to-br from-gamedev-accent/20 to-gamedev-secondary/20 mb-4 flex items-center justify-center overflow-hidden">
+                {game.image ? (
+                  <img
+                    src={game.image}
+                    alt={game.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <Gamepad2 className="w-12 h-12 text-white/20 group-hover:scale-110 transition-transform" />
+                )}
               </div>
 
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-bold text-white">{game.title}</h3>
-                  <p className="mt-1 text-sm text-slate-400">{game.description}</p>
+                  <h3 className="text-xl font-bold text-white group-hover:text-gamedev-accent transition-colors">
+                    {game.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-slate-400 line-clamp-2">{game.subtitle}</p>
                 </div>
-                <span className="shrink-0 px-2.5 py-1 rounded-full text-xs font-medium bg-gamedev-accent/15 text-gamedev-accent">
-                  {game.status}
+                <span className="shrink-0 px-2.5 py-1 rounded-full text-xs font-medium bg-gamedev-accent/15 text-gamedev-accent whitespace-nowrap">
+                  {game.status === 'completed' ? 'Завершён' : 'В разработке'}
                 </span>
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
-                {game.tech.map((t) => (
+                {game.tags.slice(0, 3).map((t) => (
                   <span
                     key={t}
                     className="px-2.5 py-1 rounded-md text-xs font-medium bg-white/5 text-slate-400"
@@ -124,11 +126,12 @@ export default function GameDev() {
                   </span>
                 ))}
               </div>
-            </div>
+            </Link>
           ))}
         </motion.div>
 
-        {games.length === 0 && (
+        {/* Empty state */}
+        {gameDevProjects.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -138,6 +141,25 @@ export default function GameDev() {
             <Gamepad2 className="w-12 h-12 text-white/20 mx-auto mb-4" />
             <p className="text-slate-500 text-lg">Скоро здесь появятся игровые проекты</p>
             <p className="text-slate-600 text-sm mt-1">А пока — изучаю движки и механики</p>
+          </motion.div>
+        )}
+
+        {/* Link to full page */}
+        {gameDevProjects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-10 text-center"
+          >
+            <Link
+              to="/gamedev"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gamedev-accent/15 text-gamedev-accent font-medium hover:bg-gamedev-accent/25 transition-all duration-200"
+            >
+              Все проекты GameDev
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         )}
       </div>

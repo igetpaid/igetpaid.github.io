@@ -1,41 +1,34 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
-import { useScrollSpy } from './hooks/useScrollSpy'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import GameDev from './components/GameDev'
-import AI from './components/AI'
-import LoRA from './components/LoRA'
-import Projects from './components/Projects'
-import Gallery from './components/Gallery'
-import Blog from './components/Blog'
-import Contacts from './components/Contacts'
-import Footer from './components/Footer'
-
-function AppContent() {
-  useScrollSpy()
-
-  return (
-    <div className="min-h-screen bg-[var(--section-bg)]">
-      <Header />
-      <main>
-        <Hero />
-        <GameDev />
-        <AI />
-        <LoRA />
-        <Projects />
-        <Gallery />
-        <Blog />
-        <Contacts />
-      </main>
-      <Footer />
-    </div>
-  )
-}
+import LandingPage from './pages/LandingPage'
+import GameDevPage from './pages/GameDevPage'
+import ProjectPage from './pages/ProjectPage'
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/gamedev" element={<GameDevPage />} />
+          <Route path="/gamedev/:projectId" element={<ProjectPage />} />
+          {/* TODO: /ai, /lora, /projects, /gallery, /blog, /contacts — when pages are ready */}
+          <Route
+            path="*"
+            element={
+              <div className="min-h-screen bg-[var(--section-bg)] flex items-center justify-center">
+                <div className="text-center px-4">
+                  <h1 className="text-4xl font-bold text-[var(--section-text)] mb-2">404</h1>
+                  <p className="text-[var(--section-text-secondary)]">Страница не найдена</p>
+                  <a href="/" className="mt-4 inline-block text-[var(--section-accent)] hover:underline">
+                    На главную
+                  </a>
+                </div>
+              </div>
+            }
+          />
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
   )
 }
