@@ -9,12 +9,8 @@
   --color-vk-light: #E4F0FF;
   --color-gamedev-accent: #ff6b9d;
   --color-gamedev-secondary: #c084fc;
-  --color-ai-dark: #0a0a23;
   --color-ai-accent: #4f8cff;
-  --color-ai-card: #12123a;
-  --color-lora-dark: #0d1117;
   --color-lora-accent: #58a6ff;
-  --color-lora-card: #161b22;
 }
 
 /* ─── Dark Mode: use .dark class instead of prefers-color-scheme ─── */
@@ -37,8 +33,36 @@ body {
   background-color: var(--section-bg, #0f1117);
 }
 
-/* ─── Default variables (available everywhere, overridden by sections) ─── */
+/* ─── Default variables for elements outside sections ─── */
 :root {
+  --section-bg: #ffffff;
+  --section-accent: #2680EB;
+  --section-accent-light: #E4F0FF;
+  --section-accent-secondary: #2680EB;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #475569;
+  --section-card-bg: #f8faff;
+  --section-border: #e2e8f0;
+  --section-muted: #94a3b8;
+  --section-icon: #cbd5e1;
+}
+
+html.dark {
+  --section-bg: #0f1117;
+  --section-accent: #3b82f6;
+  --section-accent-light: #1e293b;
+  --section-accent-secondary: #3b82f6;
+  --section-text: #e2e8f0;
+  --section-text-secondary: #94a3b8;
+  --section-card-bg: #1a1d27;
+  --section-border: #334155;
+  --section-muted: #64748b;
+  --section-icon: #475569;
+}
+
+/* ─── Section Theme Classes — Light Mode ────────────────────────────── */
+
+.section-hero {
   --section-bg: #ffffff;
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
@@ -47,55 +71,43 @@ body {
   --section-card-bg: #f8faff;
   --section-border: #e2e8f0;
   --section-muted: #94a3b8;
-}
-
-/* Dark mode defaults for elements outside sections (Header, Footer, body) */
-html.dark {
-  --section-bg: #0f1117;
-  --section-accent: #3b82f6;
-  --section-accent-light: #1e293b;
-  --section-text: #e2e8f0;
-  --section-text-secondary: #94a3b8;
-  --section-card-bg: #1a1d27;
-  --section-border: #334155;
-  --section-muted: #64748b;
-}
-
-/* ─── Section Theme Classes ─── */
-.section-hero {
-  --section-bg: #ffffff;
-  --section-accent: #2680EB;
-  --section-accent-light: #E4F0FF;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #475569;
-  --section-card-bg: #f8faff;
+  --section-icon: #cbd5e1;
 }
 
 .section-gamedev {
-  --section-bg: #0f0a1a;
+  --section-bg: #fff5f7;
   --section-accent: #ff6b9d;
   --section-accent-secondary: #c084fc;
-  --section-text: #ffffff;
-  --section-text-secondary: #c7d2fe;
-  --section-card-bg: #1a0f2e;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #5b4a6f;
+  --section-card-bg: #ffffff;
+  --section-border: #f1d6e8;
+  --section-muted: #a78ba7;
+  --section-icon: #d4b8cc;
 }
 
 .section-ai {
-  --section-bg: #0a0a23;
+  --section-bg: #f0f5ff;
   --section-accent: #4f8cff;
-  --section-accent-light: #1a1a4e;
-  --section-text: #ffffff;
-  --section-text-secondary: #a5b4fc;
-  --section-card-bg: #12123a;
+  --section-accent-light: #dbeafe;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #4b5e7a;
+  --section-card-bg: #ffffff;
+  --section-border: #d0dff0;
+  --section-muted: #8fa0bf;
+  --section-icon: #c0cfe0;
 }
 
 .section-lora {
-  --section-bg: #0d1117;
+  --section-bg: #f6f8fa;
   --section-accent: #58a6ff;
-  --section-accent-light: #1a2332;
-  --section-text: #f0f6fc;
-  --section-text-secondary: #b0b8c1;
-  --section-card-bg: #161b22;
+  --section-accent-light: #ddf4ff;
+  --section-text: #1a1a2e;
+  --section-text-secondary: #4e5b6e;
+  --section-card-bg: #ffffff;
+  --section-border: #d0d7e0;
+  --section-muted: #8b98a9;
+  --section-icon: #c0cbd6;
 }
 
 .section-projects {
@@ -105,6 +117,9 @@ html.dark {
   --section-text: #1a1a2e;
   --section-text-secondary: #475569;
   --section-card-bg: #f8faff;
+  --section-border: #e2e8f0;
+  --section-muted: #94a3b8;
+  --section-icon: #cbd5e1;
 }
 
 .section-gallery {
@@ -114,6 +129,9 @@ html.dark {
   --section-text: #1a1a2e;
   --section-text-secondary: #475569;
   --section-card-bg: #ffffff;
+  --section-border: #e2e8f0;
+  --section-muted: #94a3b8;
+  --section-icon: #cbd5e1;
 }
 
 .section-blog {
@@ -123,6 +141,9 @@ html.dark {
   --section-text: #1a1a2e;
   --section-text-secondary: #57534e;
   --section-card-bg: #ffffff;
+  --section-border: #e5ddd0;
+  --section-muted: #9a8f80;
+  --section-icon: #ccc0b0;
 }
 
 .section-contacts {
@@ -132,13 +153,97 @@ html.dark {
   --section-text: #1a1a2e;
   --section-text-secondary: #475569;
   --section-card-bg: #f8faff;
+  --section-border: #e2e8f0;
+  --section-muted: #94a3b8;
+  --section-icon: #cbd5e1;
 }
 
-/* ─── Dark Mode Overrides ─── */
-.dark .section-hero,
-.dark .section-projects,
-.dark .section-gallery,
-.dark .section-blog,
+/* ─── Section Theme Classes — Dark Mode ─────────────────────────────── */
+
+.dark .section-hero {
+  --section-bg: #0f1117;
+  --section-accent: #3b82f6;
+  --section-accent-light: #1e293b;
+  --section-text: #e2e8f0;
+  --section-text-secondary: #94a3b8;
+  --section-card-bg: #1a1d27;
+  --section-border: #334155;
+  --section-muted: #64748b;
+  --section-icon: #475569;
+}
+
+.dark .section-gamedev {
+  --section-bg: #0f0a1a;
+  --section-accent: #ff6b9d;
+  --section-accent-secondary: #c084fc;
+  --section-text: #ffffff;
+  --section-text-secondary: #c7d2fe;
+  --section-card-bg: #1a0f2e;
+  --section-border: rgba(255, 255, 255, 0.1);
+  --section-muted: #94a3b8;
+  --section-icon: #64748b;
+}
+
+.dark .section-ai {
+  --section-bg: #0a0a23;
+  --section-accent: #4f8cff;
+  --section-accent-light: #1a1a4e;
+  --section-text: #ffffff;
+  --section-text-secondary: #a5b4fc;
+  --section-card-bg: #12123a;
+  --section-border: rgba(255, 255, 255, 0.08);
+  --section-muted: #7a8ab5;
+  --section-icon: #4a5580;
+}
+
+.dark .section-lora {
+  --section-bg: #0d1117;
+  --section-accent: #58a6ff;
+  --section-accent-light: #1a2332;
+  --section-text: #f0f6fc;
+  --section-text-secondary: #b0b8c1;
+  --section-card-bg: #161b22;
+  --section-border: rgba(255, 255, 255, 0.08);
+  --section-muted: #7a8590;
+  --section-icon: #4a5560;
+}
+
+.dark .section-projects {
+  --section-bg: #0f1117;
+  --section-accent: #3b82f6;
+  --section-accent-light: #1e293b;
+  --section-text: #e2e8f0;
+  --section-text-secondary: #94a3b8;
+  --section-card-bg: #1a1d27;
+  --section-border: #334155;
+  --section-muted: #64748b;
+  --section-icon: #475569;
+}
+
+.dark .section-gallery {
+  --section-bg: #0f1117;
+  --section-accent: #3b82f6;
+  --section-accent-light: #1e293b;
+  --section-text: #e2e8f0;
+  --section-text-secondary: #94a3b8;
+  --section-card-bg: #1a1d27;
+  --section-border: #334155;
+  --section-muted: #64748b;
+  --section-icon: #475569;
+}
+
+.dark .section-blog {
+  --section-bg: #1a1410;
+  --section-accent: #f59e0b;
+  --section-accent-light: #292524;
+  --section-text: #e2e8f0;
+  --section-text-secondary: #a8a090;
+  --section-card-bg: #221d18;
+  --section-border: #3a3530;
+  --section-muted: #8a8070;
+  --section-icon: #5a5550;
+}
+
 .dark .section-contacts {
   --section-bg: #0f1117;
   --section-accent: #3b82f6;
@@ -146,41 +251,9 @@ html.dark {
   --section-text: #e2e8f0;
   --section-text-secondary: #94a3b8;
   --section-card-bg: #1a1d27;
-}
-
-/* Dark mode — blog keeps warm accent */
-.dark .section-blog {
-  --section-accent: #f59e0b;
-  --section-accent-light: #292524;
-}
-
-/* ─── Shared Section Utilities (for components) ─── */
-.section-hero,
-.section-projects,
-.section-gallery,
-.section-blog,
-.section-contacts {
-  --section-border: #e2e8f0;
-  --section-muted: #94a3b8;
-  --section-icon: #cbd5e1;
-}
-
-.dark .section-hero,
-.dark .section-projects,
-.dark .section-gallery,
-.dark .section-blog,
-.dark .section-contacts {
   --section-border: #334155;
   --section-muted: #64748b;
   --section-icon: #475569;
-}
-
-.section-gamedev,
-.section-ai,
-.section-lora {
-  --section-border: rgba(255, 255, 255, 0.1);
-  --section-muted: #94a3b8;
-  --section-icon: #64748b;
 }
 
 /* ─── Smooth background transition for all sections ─── */

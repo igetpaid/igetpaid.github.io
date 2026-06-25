@@ -61,18 +61,25 @@ export default function Header() {
   const isDark = effectiveHeaderStyle === 'dark'
   const showBg = scrolled || mobileMenuOpen
 
+  // On dark section pages (gamedev, etc.), header is always dark, no matter the toggle
   const textColor = showBg
-    ? 'text-slate-700 dark:text-slate-300'
+    ? isDarkSectionPage
+      ? 'text-slate-300'
+      : 'text-slate-700 dark:text-slate-300'
     : isDark
       ? 'text-white'
       : 'text-slate-900 dark:text-slate-100'
 
   const bgClass = showBg
-    ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm'
+    ? isDarkSectionPage
+      ? 'bg-slate-900/90 backdrop-blur-md shadow-sm'
+      : 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm'
     : 'bg-transparent'
 
   const mobileBgClass = showBg
-    ? 'bg-white/95 dark:bg-slate-900/95'
+    ? isDarkSectionPage
+      ? 'bg-slate-900/95'
+      : 'bg-white/95 dark:bg-slate-900/95'
     : isDark
       ? 'bg-slate-900/95'
       : 'bg-white/95 dark:bg-slate-900/95'
@@ -182,7 +189,9 @@ export default function Header() {
             onClick={toggleDarkMode}
             className={`p-2 rounded-lg transition-all duration-200 ${
               showBg
-                ? 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? isDarkSectionPage
+                  ? 'text-slate-400 hover:bg-white/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                 : isDark
                   ? 'text-white/80 hover:bg-white/10'
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -198,7 +207,9 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`md:hidden p-2 rounded-lg transition-colors ${
               showBg
-                ? 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                ? isDarkSectionPage
+                  ? 'text-slate-400 hover:bg-white/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                 : isDark
                   ? 'text-white hover:bg-white/10'
                   : 'text-slate-900 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'

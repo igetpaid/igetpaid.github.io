@@ -7,12 +7,16 @@ import {
   Calendar,
   Clock,
   Monitor,
+  Smartphone,
   Code2,
   CheckCircle2,
   Lightbulb,
   ChevronLeft,
   ChevronRight,
-  ExternalLink,
+  Download,
+  Quote,
+  Tag,
+  BarChart3,
 } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -58,6 +62,15 @@ export default function ProjectPage() {
     setSelectedScreenshot((prev) => (prev === screenshots.length - 1 ? 0 : prev + 1))
   }
 
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr)
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+    ]
+    return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`
+  }
+
   return (
     <div className={`min-h-screen ${sectionClass} bg-[var(--section-bg)]`}>
       <Header />
@@ -75,9 +88,16 @@ export default function ProjectPage() {
 
           {/* ─── Hero Section ─── */}
           <div className="mb-10">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[var(--section-text)] tracking-tight">
-              {project.title}
-            </h1>
+            <div className="flex items-start gap-4 flex-wrap">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[var(--section-text)] tracking-tight">
+                {project.title}
+              </h1>
+              {project.version && (
+                <span className="mt-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-[var(--section-accent)]/10 text-[var(--section-accent)] border border-[var(--section-accent)]/20">
+                  v{project.version}
+                </span>
+              )}
+            </div>
             <p className="text-lg sm:text-xl text-[var(--section-accent-secondary)] mt-2 font-medium">
               {project.subtitle}
             </p>
@@ -85,11 +105,23 @@ export default function ProjectPage() {
               {project.description}
             </p>
 
-            {/* Tags + Year */}
+            {/* Tags + Year + Platforms */}
             <div className="flex flex-wrap items-center gap-3 mt-6">
               {project.tech && (
                 <span className="px-3 py-1.5 text-xs font-medium rounded-full bg-[var(--section-accent)]/10 text-[var(--section-accent)]">
                   {project.tech.engine} • {project.tech.language}
+                </span>
+              )}
+              {project.platforms && project.platforms.includes('Android') && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                  <Smartphone className="w-3 h-3" />
+                  Android
+                </span>
+              )}
+              {project.platforms && project.platforms.includes('Windows') && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20">
+                  <Monitor className="w-3 h-3" />
+                  Windows
                 </span>
               )}
               {project.year && (
@@ -142,6 +174,11 @@ export default function ProjectPage() {
                 <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-black/60 text-white text-xs font-medium">
                   {selectedScreenshot + 1} / {screenshots.length}
                 </div>
+              </div>
+
+              {/* Caption */}
+              <div className="mt-2 text-center text-sm text-[var(--section-text-secondary)] italic">
+                {screenshots[selectedScreenshot].alt}
               </div>
 
               {/* Thumbnails */}
@@ -260,6 +297,54 @@ export default function ProjectPage() {
                   </div>
                 </motion.section>
               )}
+
+              {/* Reviews */}
+              {project.reviews && project.reviews.length > 0 && (
+                <motion.section
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h2 className="text-2xl font-bold text-[var(--section-text)] mb-6 flex items-center gap-3">
+                    <span className="w-1 h-6 rounded-full bg-[var(--section-accent)]" />
+                    Отзывы
+                  </h2>
+                  <div className="space-y-4">
+                    {project.reviews.map((review) => (
+                      <div
+                        key={review.id}
+                        className="p-5 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+                      >
+                        <div className="flex items-start gap-3">
+                          <Quote className="w-5 h-5 text-[var(--section-accent)]/40 shrink-0 mt-1" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[var(--section-text-secondary)] italic leading-relaxed">
+                              «{review.text}»
+                            </p>
+                            <div className="mt-3 flex items-center gap-3 flex-wrap">
+                              <a
+                                href={review.authorLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-[var(--section-accent)] hover:underline"
+                              >
+                                {review.author}
+                              </a>
+                              <span className="text-xs text-[var(--section-muted)]">
+                                {review.role}
+                              </span>
+                              <span className="text-xs text-[var(--section-muted)]">
+                                {formatDate(review.date)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
             </div>
 
             {/* Sidebar */}
@@ -300,11 +385,39 @@ export default function ProjectPage() {
                     </div>
 
                     <div className="flex items-center gap-3">
+                      <Tag className="w-4 h-4 text-[var(--section-muted)]" />
+                      <div>
+                        <p className="text-xs text-[var(--section-muted)]">Версия</p>
+                        <p className="text-sm font-medium text-[var(--section-text)]">
+                          {project.version || '—'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Development stats */}
+              {project.development && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+                >
+                  <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
+                    <BarChart3 className="w-5 h-5 text-[var(--section-accent)]" />
+                    {project.development.title}
+                  </h3>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
                       <Clock className="w-4 h-4 text-[var(--section-muted)]" />
                       <div>
-                        <p className="text-xs text-[var(--section-muted)]">Время разработки</p>
+                        <p className="text-xs text-[var(--section-muted)]">Суммарное время</p>
                         <p className="text-sm font-medium text-[var(--section-text)]">
-                          {project.tech.stats?.developmentTime}
+                          {project.development.stats?.totalTime}
                         </p>
                       </div>
                     </div>
@@ -314,27 +427,70 @@ export default function ProjectPage() {
                       <div>
                         <p className="text-xs text-[var(--section-muted)]">В редакторе Godot</p>
                         <p className="text-sm font-medium text-[var(--section-text)]">
-                          {project.tech.stats?.godotTime}
+                          {project.development.stats?.engineTime}
                         </p>
                       </div>
                     </div>
-                  </div>
 
-                  {project.tech.tools && (
-                    <div className="mt-5 pt-4 border-t border-[var(--section-border)]">
-                      <p className="text-xs text-[var(--section-muted)] mb-2">Инструменты</p>
-                      <ul className="space-y-2">
-                        {project.tech.tools.map((tool, i) => (
-                          <li key={i} className="text-sm text-[var(--section-text-secondary)] flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--section-accent)] mt-1.5 shrink-0" />
-                            {tool}
-                          </li>
+                    <div className="pt-3 border-t border-[var(--section-border)] space-y-2">
+                      <p className="text-xs text-[var(--section-muted)]">Платформы</p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.development.platforms?.map((p) => (
+                          <span
+                            key={p}
+                            className="px-2.5 py-1 rounded-md text-xs font-medium bg-[var(--section-accent)]/10 text-[var(--section-accent)]"
+                          >
+                            {p}
+                          </span>
                         ))}
-                      </ul>
+                      </div>
+                      {project.development.note && (
+                        <p className="text-xs text-[var(--section-muted)] italic mt-2">
+                          {project.development.note}
+                        </p>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </motion.div>
               )}
+
+              {/* Download */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+              >
+                <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
+                  <Download className="w-5 h-5 text-[var(--section-accent)]" />
+                  Скачать игру
+                </h3>
+
+                <div className="space-y-3">
+                  {/* Windows — заглушка */}
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
+                    <Monitor className="w-5 h-5 text-blue-500" />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
+                      <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
+                        {project.download?.note || 'Ссылка появится после публикации релиза'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Android — заглушка */}
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                    <Smartphone className="w-5 h-5 text-emerald-500" />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
+                      <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
+                        {project.download?.note || 'Ссылка появится после публикации релиза'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
 
               {/* Links */}
               {Object.keys(project.links).length > 0 && (
@@ -342,7 +498,7 @@ export default function ProjectPage() {
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
                   className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
                 >
                   <h3 className="text-lg font-bold text-[var(--section-text)] mb-3">Ссылки</h3>
@@ -354,19 +510,8 @@ export default function ProjectPage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-sm text-[var(--section-accent)] hover:underline"
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <Download className="w-4 h-4" />
                         GitHub
-                      </a>
-                    )}
-                    {project.links.release && (
-                      <a
-                        href={project.links.release}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-[var(--section-accent)] hover:underline"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Скачать
                       </a>
                     )}
                   </div>
