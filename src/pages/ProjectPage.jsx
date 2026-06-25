@@ -11,6 +11,7 @@ import {
   Code2,
   CheckCircle2,
   Lightbulb,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Download,
@@ -254,55 +255,6 @@ export default function ProjectPage() {
                     ))}
                   </div>
 
-                  {/* Features list */}
-                  {project.gameplay.features && (
-                    <div className="mt-6 grid sm:grid-cols-2 gap-3">
-                      {project.gameplay.features.map((f, i) => (
-                        <div
-                          key={i}
-                          className="flex items-start gap-3 p-3 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
-                        >
-                          <CheckCircle2 className="w-5 h-5 text-[var(--section-accent)] shrink-0 mt-0.5" />
-                          <span className="text-sm text-[var(--section-text-secondary)]">{f}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </motion.section>
-              )}
-
-              {/* Challenges */}
-              {project.challenges && (
-                <motion.section
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <h2 className="text-2xl font-bold text-[var(--section-text)] mb-4 flex items-center gap-3">
-                    <span className="w-1 h-6 rounded-full bg-[var(--section-accent)]" />
-                    {project.challenges.title}
-                  </h2>
-                  <div className="space-y-4">
-                    {project.challenges.items.map((item, i) => (
-                      <div
-                        key={i}
-                        className="p-5 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
-                      >
-                        <div className="flex items-start gap-3">
-                          <Lightbulb className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                          <div>
-                            <p className="font-medium text-[var(--section-text)] mb-1">
-                              {item.problem}
-                            </p>
-                            <p className="text-sm text-[var(--section-text-secondary)]">
-                              {item.solution}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
                 </motion.section>
               )}
 
@@ -533,10 +485,101 @@ export default function ProjectPage() {
               )}
             </div>
           </div>
+
+          {/* ─── Collapsible Details ─── */}
+          {(project.gameplay?.features || project.challenges) && (
+            <DetailsSection
+              features={project.gameplay?.features}
+              challenges={project.challenges}
+            />
+          )}
         </div>
       </main>
 
       <Footer />
     </div>
+  )
+}
+
+/* ─── Collapsible Details Section ─── */
+function DetailsSection({ features, challenges }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <section className="mt-10">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-4 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-[var(--section-accent)]/30 transition-colors group"
+      >
+        <span className="text-lg font-bold text-[var(--section-text)] group-hover:text-[var(--section-accent)] transition-colors">
+          Подробности
+        </span>
+        <ChevronDown
+          className={`w-5 h-5 text-[var(--section-muted)] transition-transform duration-300 ${
+            isOpen ? 'rotate-180' : ''
+          }`}
+        />
+      </button>
+
+      {isOpen && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="mt-4 space-y-8 overflow-hidden"
+        >
+          {/* Features */}
+          {features && features.length > 0 && (
+            <div>
+              <h3 className="text-xl font-bold text-[var(--section-text)] mb-4 flex items-center gap-3">
+                <span className="w-1 h-5 rounded-full bg-[var(--section-accent)]" />
+                Особенности
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {features.map((f, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 p-3 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-[var(--section-accent)] shrink-0 mt-0.5" />
+                    <span className="text-sm text-[var(--section-text-secondary)]">{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Challenges */}
+          {challenges && challenges.items && challenges.items.length > 0 && (
+            <div>
+              <h3 className="text-xl font-bold text-[var(--section-text)] mb-4 flex items-center gap-3">
+                <span className="w-1 h-5 rounded-full bg-[var(--section-accent)]" />
+                {challenges.title || 'Сложности и решения'}
+              </h3>
+              <div className="space-y-4">
+                {challenges.items.map((item, i) => (
+                  <div
+                    key={i}
+                    className="p-5 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+                  >
+                    <div className="flex items-start gap-3">
+                      <Lightbulb className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-medium text-[var(--section-text)] mb-1">
+                          {item.problem}
+                        </p>
+                        <p className="text-sm text-[var(--section-text-secondary)]">
+                          {item.solution}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </section>
   )
 }
