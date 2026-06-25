@@ -34,7 +34,7 @@ body {
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
   --section-text: #1a1a2e;
-  --section-text-secondary: #64748b;
+  --section-text-secondary: #475569;
   --section-card-bg: #f8faff;
 }
 
@@ -43,7 +43,7 @@ body {
   --section-accent: #ff6b9d;
   --section-accent-secondary: #c084fc;
   --section-text: #ffffff;
-  --section-text-secondary: #a5b4fc;
+  --section-text-secondary: #c7d2fe;
   --section-card-bg: #1a0f2e;
 }
 
@@ -52,7 +52,7 @@ body {
   --section-accent: #4f8cff;
   --section-accent-light: #1a1a4e;
   --section-text: #ffffff;
-  --section-text-secondary: #8892b0;
+  --section-text-secondary: #a5b4fc;
   --section-card-bg: #12123a;
 }
 
@@ -61,7 +61,7 @@ body {
   --section-accent: #58a6ff;
   --section-accent-light: #1a2332;
   --section-text: #f0f6fc;
-  --section-text-secondary: #8b949e;
+  --section-text-secondary: #b0b8c1;
   --section-card-bg: #161b22;
 }
 
@@ -70,7 +70,7 @@ body {
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
   --section-text: #1a1a2e;
-  --section-text-secondary: #64748b;
+  --section-text-secondary: #475569;
   --section-card-bg: #f8faff;
 }
 
@@ -79,7 +79,7 @@ body {
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
   --section-text: #1a1a2e;
-  --section-text-secondary: #64748b;
+  --section-text-secondary: #475569;
   --section-card-bg: #ffffff;
 }
 
@@ -88,7 +88,7 @@ body {
   --section-accent: #d97706;
   --section-accent-light: #fef3c7;
   --section-text: #1a1a2e;
-  --section-text-secondary: #78716c;
+  --section-text-secondary: #57534e;
   --section-card-bg: #ffffff;
 }
 
@@ -97,8 +97,57 @@ body {
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
   --section-text: #1a1a2e;
-  --section-text-secondary: #64748b;
+  --section-text-secondary: #475569;
   --section-card-bg: #f8faff;
+}
+
+/* ─── Dark Mode Overrides ─── */
+.dark .section-hero,
+.dark .section-projects,
+.dark .section-gallery,
+.dark .section-blog,
+.dark .section-contacts {
+  --section-bg: #0f1117;
+  --section-accent: #3b82f6;
+  --section-accent-light: #1e293b;
+  --section-text: #e2e8f0;
+  --section-text-secondary: #94a3b8;
+  --section-card-bg: #1a1d27;
+}
+
+/* Dark mode — blog keeps warm accent */
+.dark .section-blog {
+  --section-accent: #f59e0b;
+  --section-accent-light: #292524;
+}
+
+/* ─── Shared Section Utilities (for components) ─── */
+.section-hero,
+.section-projects,
+.section-gallery,
+.section-blog,
+.section-contacts {
+  --section-border: #e2e8f0;
+  --section-muted: #94a3b8;
+  --section-icon: #cbd5e1;
+}
+
+.dark .section-hero,
+.dark .section-projects,
+.dark .section-gallery,
+.dark .section-blog,
+.dark .section-contacts {
+  --section-border: #334155;
+  --section-muted: #64748b;
+  --section-icon: #475569;
+}
+
+.section-gamedev,
+.section-ai,
+.section-lora {
+  --section-border: rgba(255, 255, 255, 0.1);
+  --section-muted: #94a3b8;
+  --section-icon: #64748b;
 }
 
 /* ─── Utility Classes ─── */

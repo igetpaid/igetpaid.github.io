@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
 import { sections } from '../utils/sectionThemes'
 
@@ -15,7 +15,7 @@ const navItems = [
 ]
 
 export default function Header() {
-  const { activeSection, headerStyle } = useTheme()
+  const { activeSection, headerStyle, isDarkMode, toggleDarkMode } = useTheme()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -28,19 +28,26 @@ export default function Header() {
   const isDark = headerStyle === 'dark'
   const showBg = scrolled || mobileMenuOpen
 
+  // Nav text color: when header has solid bg -> always dark text; when transparent -> adapt
   const textColor = showBg
-    ? 'text-slate-900'
+    ? 'text-slate-700 dark:text-slate-300'
     : isDark
       ? 'text-white'
-      : 'text-slate-900'
+      : 'text-slate-900 dark:text-slate-100'
 
   const bgClass = showBg
-    ? 'bg-white/90 backdrop-blur-md shadow-sm'
+    ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm'
     : 'bg-transparent'
 
-  const mobileBgClass = isDark && !showBg
-    ? 'bg-slate-900/95'
-    : 'bg-white/95'
+  const mobileBgClass = showBg
+    ? 'bg-white/95 dark:bg-slate-900/95'
+    : isDark
+      ? 'bg-slate-900/95'
+      : 'bg-white/95 dark:bg-slate-900/95'
+
+  // Active nav item: always visible no matter scroll state or section
+  const activeNavClass = 'bg-[--section-accent] text-white shadow-sm'
+  const inactiveNavClass = `${textColor} hover:bg-black/5 dark:hover:bg-white/10`
 
   return (
     <header
@@ -62,11 +69,7 @@ export default function Header() {
               <a
                 href={`#${item.id}`}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  activeSection === item.id
-                    ? isDark
-                      ? 'bg-white/10 text-white'
-                      : 'bg-blue-50 text-blue-600'
-                    : `${textColor} hover:${isDark ? 'bg-white/5' : 'bg-slate-100'}`
+                  activeSection === item.id ? activeNavClass : inactiveNavClass
                 }`}
               >
                 {item.label}
@@ -75,16 +78,39 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className={`md:hidden p-2 rounded-lg transition-colors ${
-            isDark ? 'hover:bg-white/10 text-white' : 'hover:bg-slate-100 text-slate-900'
-          }`}
-          aria-label="Меню"
-        >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Right section: theme toggle + mobile menu */}
+        <div className="flex items-center gap-2">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleDarkMode}
+            className={`p-2 rounded-lg transition-all duration-200 ${
+              showBg
+                ? 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                : isDark
+                  ? 'text-white/80 hover:bg-white/10'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+            }`}
+            aria-label={isDarkMode ? 'Светлая тема' : 'Тёмная тема'}
+            title={isDarkMode ? 'Светлая тема' : 'Тёмная тема'}
+          >
+            {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`md:hidden p-2 rounded-lg transition-colors ${
+              showBg
+                ? 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                : isDark
+                  ? 'text-white hover:bg-white/10'
+                  : 'text-slate-900 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+            }`}
+            aria-label="Меню"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -98,12 +124,8 @@ export default function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                     activeSection === item.id
-                      ? isDark
-                        ? 'bg-white/10 text-white'
-                        : 'bg-blue-50 text-blue-600'
-                      : isDark
-                        ? 'text-slate-300 hover:bg-white/5'
-                        : 'text-slate-600 hover:bg-slate-100'
+                      ? activeNavClass
+                      : `text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800`
                   }`}
                 >
                   {item.label}

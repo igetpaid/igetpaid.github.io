@@ -25,10 +25,10 @@ export default function Blog() {
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-semibold tracking-wider uppercase mb-4">
             Blog
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[--section-text] tracking-tight">
             Блог и мысли
           </h2>
-          <p className="mt-4 text-lg text-slate-500 max-w-2xl">
+          <p className="mt-4 text-lg text-[--section-text-secondary] max-w-2xl">
             Заметки о процессе, открытиях и просто интересные истории из разработки.
           </p>
         </motion.div>
@@ -42,10 +42,10 @@ export default function Blog() {
           className="mt-12 space-y-6"
         >
           {blogPosts.length === 0 && (
-            <div className="text-center py-16 rounded-2xl border border-dashed border-slate-200">
-              <BookOpen className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-              <p className="text-slate-500 text-lg">Записей пока нет</p>
-              <p className="text-slate-400 text-sm mt-1">Скоро здесь появятся первые заметки</p>
+            <div className="text-center py-16 rounded-2xl border border-dashed border-[--section-border]">
+              <BookOpen className="w-12 h-12 text-[--section-muted] mx-auto mb-4" />
+              <p className="text-[--section-text-secondary] text-lg">Записей пока нет</p>
+              <p className="text-[--section-text-secondary] text-sm mt-1">Скоро здесь появятся первые заметки</p>
             </div>
           )}
 
@@ -55,15 +55,15 @@ export default function Blog() {
             return (
               <article
                 key={post.id}
-                className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-amber-300/40 transition-all duration-200"
+                className="p-6 rounded-2xl bg-[--section-card-bg] border border-[--section-border] hover:border-amber-300/40 transition-all duration-200"
               >
                 {/* Header */}
-                <div className="flex items-center gap-3 text-sm text-slate-400 mb-3">
+                <div className="flex items-center gap-3 text-sm text-[--section-text-secondary] mb-3">
                   <span className="inline-flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" />
                     {post.date}
                   </span>
-                  <span className="text-slate-300">·</span>
+                  <span className="text-[--section-muted]">·</span>
                   <div className="flex flex-wrap gap-1.5">
                     {post.tags.map((tag) => (
                       <span
@@ -78,8 +78,8 @@ export default function Blog() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-slate-900">{post.title}</h3>
-                <p className="mt-2 text-sm text-slate-500 leading-relaxed">{post.excerpt}</p>
+                <h3 className="text-xl font-bold text-[--section-text]">{post.title}</h3>
+                <p className="mt-2 text-sm text-[--section-text-secondary] leading-relaxed">{post.excerpt}</p>
 
                 {/* Expand/collapse */}
                 <button
@@ -100,9 +100,9 @@ export default function Blog() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     transition={{ duration: 0.3 }}
-                    className="mt-4 pt-4 border-t border-slate-100"
+                    className="mt-4 pt-4 border-t border-[--section-border]"
                   >
-                    <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                    <div className="text-sm text-[--section-text] leading-relaxed whitespace-pre-line">
                       {post.content}
                     </div>
                   </motion.div>
