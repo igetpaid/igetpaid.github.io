@@ -40,8 +40,36 @@ export default function Contacts() {
       id="contacts"
       className="section-contacts relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
-      {/* Background */}
+      {/* Decorative: blur orbs */}
       <div className="absolute -left-40 bottom-0 h-[500px] w-[500px] rounded-full bg-vk-blue/5 blur-[200px]" />
+
+      {/* Decorative: grid pattern */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.06]"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <pattern id="contacts-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#2680EB" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#contacts-grid)" />
+      </svg>
+
+      {/* Decorative: diagonal accent lines */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.07]"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line x1="20%" y1="0" x2="40%" y2="100%" stroke="#2680EB" strokeWidth="1" />
+        <line x1="75%" y1="0" x2="55%" y2="100%" stroke="#2680EB" strokeWidth="1" />
+      </svg>
+
+      {/* Decorative: floating dots */}
+      <div className="absolute top-1/4 left-[10%] w-2 h-2 rounded-full bg-vk-blue/15 dark:bg-vk-blue/25" />
+      <div className="absolute bottom-1/3 right-[12%] w-3 h-3 rounded-full bg-vk-blue/10 dark:bg-vk-blue/20" />
+      <div className="absolute top-3/4 left-[30%] w-1.5 h-1.5 rounded-full bg-vk-blue/15 dark:bg-vk-blue/25" />
+      <div className="absolute bottom-1/4 right-[30%] w-2 h-2 rounded-full bg-vk-blue/10 dark:bg-vk-blue/20" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 text-center">
         {/* Section header */}

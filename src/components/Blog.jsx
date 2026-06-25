@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, Tag, ChevronDown, ChevronUp, BookOpen } from 'lucide-react'
+import { Calendar, Tag, ChevronDown, ChevronUp, BookOpen, ExternalLink } from 'lucide-react'
+import VKIcon from './icons/VKIcon'
 import { blogPosts } from '../data/blog'
 
 export default function Blog() {
@@ -31,6 +32,18 @@ export default function Blog() {
           <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-2xl">
             Заметки о процессе, открытиях и просто интересные истории из разработки.
           </p>
+
+          {/* VK link */}
+          <a
+            href="https://vk.com/igor_tengel"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--section-text-secondary)] hover:text-amber-600 transition-colors"
+          >
+            <VKIcon className="w-4 h-4" />
+            vk.com/igor_tengel
+            <ExternalLink className="w-3.5 h-3.5 opacity-60" />
+          </a>
         </motion.div>
 
         {/* Posts */}

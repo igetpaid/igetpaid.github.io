@@ -15,7 +15,7 @@ const navItems = [
   { id: 'ai', label: 'AI' },
   { id: 'lora', label: 'LoRA' },
   { id: 'projects', label: 'Проекты' },
-  { id: 'gallery', label: 'Галерея' },
+
   { id: 'blog', label: 'Блог' },
   { id: 'contacts', label: 'Контакты' },
 ]

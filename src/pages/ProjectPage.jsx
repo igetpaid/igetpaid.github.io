@@ -258,6 +258,46 @@ export default function ProjectPage() {
                 </motion.section>
               )}
 
+              {/* Download */}
+              {project.download && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+                >
+                  <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
+                    <Download className="w-5 h-5 text-[var(--section-accent)]" />
+                    Скачать игру
+                  </h3>
+
+                  <div className="space-y-3">
+                    {/* Windows — заглушка */}
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
+                      <Monitor className="w-5 h-5 text-blue-500" />
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
+                        <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
+                          {project.download?.note || 'Ссылка появится после публикации релиза'}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Android — заглушка */}
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                      <Smartphone className="w-5 h-5 text-emerald-500" />
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
+                        <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
+                          {project.download?.note || 'Ссылка появится после публикации релиза'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
               {/* Comments */}
               {project.comments && project.comments.length > 0 && (
                 <motion.section
@@ -419,44 +459,6 @@ export default function ProjectPage() {
                   </div>
                 </motion.div>
               )}
-
-              {/* Download */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
-              >
-                <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
-                  <Download className="w-5 h-5 text-[var(--section-accent)]" />
-                  Скачать игру
-                </h3>
-
-                <div className="space-y-3">
-                  {/* Windows — заглушка */}
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
-                    <Monitor className="w-5 h-5 text-blue-500" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
-                      <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
-                        {project.download?.note || 'Ссылка появится после публикации релиза'}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Android — заглушка */}
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-                    <Smartphone className="w-5 h-5 text-emerald-500" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
-                      <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
-                        {project.download?.note || 'Ссылка появится после публикации релиза'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
 
               {/* Links */}
               {Object.keys(project.links).length > 0 && (

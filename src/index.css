@@ -78,11 +78,11 @@ html.dark {
   --section-bg: #ffffff;
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #475569;
+  --section-text: #111827;
+  --section-text-secondary: #1f2937;
   --section-card-bg: #f8faff;
   --section-border: #e2e8f0;
-  --section-muted: #94a3b8;
+  --section-muted: #4b5563;
   --section-icon: #cbd5e1;
 }
 
@@ -90,23 +90,23 @@ html.dark {
   --section-bg: #f0f5ff;
   --section-accent: #4f8cff;
   --section-accent-light: #dbeafe;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #4b5e7a;
+  --section-text: #111827;
+  --section-text-secondary: #1f2937;
   --section-card-bg: #ffffff;
   --section-border: #d0dff0;
-  --section-muted: #8fa0bf;
+  --section-muted: #4b5563;
   --section-icon: #c0cfe0;
 }
 
 .section-lora {
-  --section-bg: #f6f8fa;
+  --section-bg: #e8edf2;
   --section-accent: #58a6ff;
   --section-accent-light: #ddf4ff;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #4e5b6e;
+  --section-text: #111827;
+  --section-text-secondary: #1f2937;
   --section-card-bg: #ffffff;
   --section-border: #d0d7e0;
-  --section-muted: #8b98a9;
+  --section-muted: #4b5563;
   --section-icon: #c0cbd6;
 }
 
@@ -114,35 +114,25 @@ html.dark {
   --section-bg: #ffffff;
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #475569;
+  --section-text: #111827;
+  --section-text-secondary: #1f2937;
   --section-card-bg: #f8faff;
   --section-border: #e2e8f0;
-  --section-muted: #94a3b8;
+  --section-muted: #4b5563;
   --section-icon: #cbd5e1;
-}
-
-.section-gallery {
-  --section-bg: #f8fafc;
-  --section-accent: #2680EB;
-  --section-accent-light: #E4F0FF;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #475569;
-  --section-card-bg: #ffffff;
-  --section-border: #e2e8f0;
-  --section-muted: #94a3b8;
-  --section-icon: #cbd5e1;
+  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 .section-blog {
   --section-bg: #fefcf5;
   --section-accent: #d97706;
   --section-accent-light: #fef3c7;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #57534e;
+  --section-text: #111827;
+  --section-text-secondary: #1f2937;
   --section-card-bg: #ffffff;
   --section-border: #e5ddd0;
-  --section-muted: #9a8f80;
+  --section-muted: #4b5563;
   --section-icon: #ccc0b0;
 }
 
@@ -150,12 +140,14 @@ html.dark {
   --section-bg: #ffffff;
   --section-accent: #2680EB;
   --section-accent-light: #E4F0FF;
-  --section-text: #1a1a2e;
-  --section-text-secondary: #475569;
+  --section-text: #111827;
+  --section-text-secondary: #1f2937;
   --section-card-bg: #f8faff;
   --section-border: #e2e8f0;
-  --section-muted: #94a3b8;
+  --section-muted: #4b5563;
   --section-icon: #cbd5e1;
+  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* ─── Section Theme Classes — Dark Mode ─────────────────────────────── */
@@ -220,18 +212,6 @@ html.dark {
   --section-icon: #475569;
 }
 
-.dark .section-gallery {
-  --section-bg: #0f1117;
-  --section-accent: #3b82f6;
-  --section-accent-light: #1e293b;
-  --section-text: #e2e8f0;
-  --section-text-secondary: #94a3b8;
-  --section-card-bg: #1a1d27;
-  --section-border: #334155;
-  --section-muted: #64748b;
-  --section-icon: #475569;
-}
-
 .dark .section-blog {
   --section-bg: #1a1410;
   --section-accent: #f59e0b;
@@ -258,7 +238,7 @@ html.dark {
 
 /* ─── Smooth background transition for all sections ─── */
 .section-hero, .section-gamedev, .section-ai, .section-lora,
-.section-projects, .section-gallery, .section-blog, .section-contacts {
+.section-projects, .section-blog, .section-contacts {
   transition: background-color 0.3s ease;
 }
 

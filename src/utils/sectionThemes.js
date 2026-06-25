@@ -37,12 +37,6 @@ export const sections = [
     accent: '#2680EB',
   },
   {
-    id: 'gallery',
-    label: 'Галерея',
-    themeClass: 'section-gallery',
-    accent: '#2680EB',
-  },
-  {
     id: 'blog',
     label: 'Блог',
     themeClass: 'section-blog',
