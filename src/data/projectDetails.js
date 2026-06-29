@@ -90,10 +90,10 @@ export const projectDetails = {
     },
 
     download: {
-      windows: 'https://github.com/igetpaid/HardReset/releases/download/v1.1/hardreset.exe',
+      windows: 'https://github.com/igetpaid/HardReset/releases/latest/download/hardreset.exe',
       android: null,
       github: 'https://github.com/igetpaid/HardReset',
-      note: 'Релиз v1.1 на GitHub',
+      note: 'Релиз v1.1.1 — единый .exe',
     },
 
     comments: [
