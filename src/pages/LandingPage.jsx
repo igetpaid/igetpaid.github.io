@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import GameDev from '../components/GameDev'
 import AI from '../components/AI'
-import LoRA from '../components/LoRA'
+
 import Projects from '../components/Projects'
 
 import Blog from '../components/Blog'
@@ -20,7 +20,7 @@ export default function LandingPage() {
         <Hero />
         <GameDev />
         <AI />
-        <LoRA />
+
         <Projects />
         <Blog />
         <Contacts />

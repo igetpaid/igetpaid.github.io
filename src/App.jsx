@@ -12,7 +12,7 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/gamedev" element={<GameDevPage />} />
           <Route path="/gamedev/:projectId" element={<ProjectPage />} />
-          {/* TODO: /ai, /lora, /projects, /gallery, /blog, /contacts — when pages are ready */}
+          {/* TODO: /ai, /projects, /blog, /contacts — when pages are ready */}
           <Route
             path="*"
             element={

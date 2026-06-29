@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Brain, Microscope, Cpu, ArrowRight } from 'lucide-react'
+import { Microscope, Cpu } from 'lucide-react'
 
 const topics = [
   {
@@ -7,12 +7,6 @@ const topics = [
     title: 'Speech-to-Text',
     description: 'Локальное распознавание речи через Whisper. Собрал форк с улучшениями.',
     tags: ['Whisper', 'Tauri', 'Rust'],
-  },
-  {
-    icon: Brain,
-    title: 'LoRA & Fine-tuning',
-    description: 'Обучение и дообучение моделей. Эксперименты с диффузионками и LLM.',
-    tags: ['LoRA', 'Diffusion', 'Python'],
   },
   {
     icon: Cpu,
@@ -65,7 +59,7 @@ export default function AI() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {topics.map((topic, i) => (
             <div
@@ -91,22 +85,7 @@ export default function AI() {
           ))}
         </motion.div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 text-center"
-        >
-          <a
-            href="#lora"
-            className="inline-flex items-center gap-2 text-ai-accent hover:text-[var(--section-accent)] font-medium transition-colors"
-          >
-            Подробнее про LoRA
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </motion.div>
+
       </div>
     </section>
   )

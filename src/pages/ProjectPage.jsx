@@ -18,6 +18,7 @@ import {
   Quote,
   Tag,
   BarChart3,
+  ExternalLink,
 } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -273,24 +274,61 @@ export default function ProjectPage() {
                   </h3>
 
                   <div className="space-y-3">
-                    {/* Windows — заглушка */}
-                    <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
-                      <Monitor className="w-5 h-5 text-blue-500" />
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
-                        <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
-                          {project.download?.note || 'Ссылка появится после публикации релиза'}
-                        </p>
+                    {/* Windows — ссылка на релиз */}
+                    {project.download?.windows ? (
+                      <a
+                        href={project.download.windows}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/15 transition-colors group"
+                      >
+                        <Monitor className="w-5 h-5 text-blue-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
+                          <p className="text-xs text-[var(--section-text-secondary)]">
+                            {project.download.note || 'Скачать .exe'}
+                          </p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-blue-500 transition-colors" />
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
+                        <Monitor className="w-5 h-5 text-blue-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
+                          <p className="text-xs text-[var(--section-muted)]">
+                            Ссылка появится после публикации релиза
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    )}
+
+                    {/* GitHub repo link */}
+                    {project.download?.github && (
+                      <a
+                        href={project.download.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-slate-500/10 border border-slate-500/20 hover:bg-slate-500/15 transition-colors group"
+                      >
+                        <GitHubIcon className="w-5 h-5 text-[var(--section-text-secondary)]" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">GitHub</p>
+                          <p className="text-xs text-[var(--section-text-secondary)]">
+                            Исходный код, релизы, issues
+                          </p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-[var(--section-text-secondary)] transition-colors" />
+                      </a>
+                    )}
 
                     {/* Android — заглушка */}
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
                       <Smartphone className="w-5 h-5 text-emerald-500" />
                       <div className="flex-1">
                         <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
-                        <p className="text-xs text-[var(--section-muted)] line-through decoration-red-500/50">
-                          {project.download?.note || 'Ссылка появится после публикации релиза'}
+                        <p className="text-xs text-[var(--section-muted)]">
+                          Релиз для Android ожидается
                         </p>
                       </div>
                     </div>

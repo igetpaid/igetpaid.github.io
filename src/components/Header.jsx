@@ -13,7 +13,7 @@ const navItems = [
   { id: 'hero', label: 'Главная' },
   { id: 'gamedev', label: 'GameDev' },
   { id: 'ai', label: 'AI' },
-  { id: 'lora', label: 'LoRA' },
+
   { id: 'projects', label: 'Проекты' },
 
   { id: 'blog', label: 'Блог' },

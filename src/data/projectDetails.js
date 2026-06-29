@@ -89,11 +89,11 @@ export const projectDetails = {
       ],
     },
 
-    // Заглушка для скачивания — заменить на реальные ссылки, когда появятся
     download: {
-      windows: null, // будет: 'https://github.com/igetpaid/hardreset/releases/latest'
-      android: null, // будет: 'https://github.com/igetpaid/hardreset/releases/latest'
-      note: 'Ссылки на скачивание появятся после публикации релиза на GitHub',
+      windows: 'https://github.com/igetpaid/HardReset/releases/download/v1.1/hardreset.exe',
+      android: null,
+      github: 'https://github.com/igetpaid/HardReset',
+      note: 'Релиз v1.1 на GitHub',
     },
 
     comments: [

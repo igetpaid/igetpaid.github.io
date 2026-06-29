@@ -25,12 +25,6 @@ export const sections = [
     accent: '#4f8cff',
   },
   {
-    id: 'lora',
-    label: 'LoRA',
-    themeClass: 'section-lora',
-    accent: '#58a6ff',
-  },
-  {
     id: 'projects',
     label: 'Проекты',
     themeClass: 'section-projects',
