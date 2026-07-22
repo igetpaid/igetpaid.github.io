@@ -322,16 +322,34 @@ export default function ProjectPage() {
                       </a>
                     )}
 
-                    {/* Android — заглушка */}
-                    <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-                      <Smartphone className="w-5 h-5 text-emerald-500" />
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
-                        <p className="text-xs text-[var(--section-muted)]">
-                          Релиз для Android ожидается
-                        </p>
+                    {/* Android — ссылка на релиз */}
+                    {project.download?.android ? (
+                      <a
+                        href={project.download.android}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/15 transition-colors group"
+                      >
+                        <Smartphone className="w-5 h-5 text-emerald-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
+                          <p className="text-xs text-[var(--section-text-secondary)]">
+                            {project.download.androidNote || 'Скачать .apk'}
+                          </p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-emerald-500 transition-colors" />
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                        <Smartphone className="w-5 h-5 text-emerald-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
+                          <p className="text-xs text-[var(--section-muted)]">
+                            Релиз для Android ожидается
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </motion.div>
               )}
