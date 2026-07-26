@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import LandingPage from './pages/LandingPage'
-import GameDevPage from './pages/GameDevPage'
+import ProjectsPage from './pages/ProjectsPage'
 import ProjectPage from './pages/ProjectPage'
 
 export default function App() {
@@ -10,9 +10,9 @@ export default function App() {
       <ThemeProvider>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/gamedev" element={<GameDevPage />} />
-          <Route path="/gamedev/:projectId" element={<ProjectPage />} />
-          {/* TODO: /ai, /projects, /blog, /contacts — when pages are ready */}
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/:projectId" element={<ProjectPage />} />
+          {/* TODO: /blog, /contacts — when pages are ready */}
           <Route
             path="*"
             element={

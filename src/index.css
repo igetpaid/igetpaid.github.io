@@ -186,6 +186,7 @@ html.dark {
   --section-border: #334155;
   --section-muted: #64748b;
   --section-icon: #475569;
+  background-image: none;
 }
 
 .dark .section-blog {
@@ -210,6 +211,7 @@ html.dark {
   --section-border: #334155;
   --section-muted: #64748b;
   --section-icon: #475569;
+  background-image: none;
 }
 
 /* ─── Smooth background transition for all sections ─── */

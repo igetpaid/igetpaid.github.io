@@ -21,8 +21,8 @@ const contacts = [
   {
     icon: Send,
     label: 'Telegram',
-    handle: '@igetpaid',
-    href: '#',
+    handle: '@igor_tengel',
+    href: 'https://t.me/igor_tengel',
     iconColor: 'text-sky-500',
   },
   {
@@ -45,22 +45,9 @@ export default function Contacts() {
       <div className="absolute -right-60 -top-40 h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-vk-blue/12 via-blue-400/5 to-transparent blur-[160px]" />
       <div className="absolute right-1/4 top-1/3 h-[250px] w-[250px] rounded-full bg-vk-blue/5 blur-[100px]" />
 
-      {/* Decorative: grid pattern */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.06]"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern id="contacts-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#2680EB" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#contacts-grid)" />
-      </svg>
-
       {/* Decorative: diagonal accent lines */}
       <svg
-        className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.07]"
+        className="absolute inset-0 w-full h-full opacity-[0.08] dark:opacity-[0.14]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <line x1="20%" y1="0" x2="40%" y2="100%" stroke="#2680EB" strokeWidth="1" />
@@ -68,10 +55,10 @@ export default function Contacts() {
       </svg>
 
       {/* Decorative: floating dots */}
-      <div className="absolute top-1/4 left-[10%] w-2 h-2 rounded-full bg-vk-blue/15 dark:bg-vk-blue/25" />
-      <div className="absolute bottom-1/3 right-[12%] w-3 h-3 rounded-full bg-vk-blue/10 dark:bg-vk-blue/20" />
-      <div className="absolute top-3/4 left-[30%] w-1.5 h-1.5 rounded-full bg-vk-blue/15 dark:bg-vk-blue/25" />
-      <div className="absolute bottom-1/4 right-[30%] w-2 h-2 rounded-full bg-vk-blue/10 dark:bg-vk-blue/20" />
+      <div className="absolute top-1/4 left-[10%] w-3 h-3 rounded-full bg-vk-blue/35 dark:bg-vk-blue/45" />
+      <div className="absolute bottom-1/3 right-[12%] w-3.5 h-3.5 rounded-full bg-vk-blue/30 dark:bg-vk-blue/40" />
+      <div className="absolute top-3/4 left-[30%] w-2.5 h-2.5 rounded-full bg-vk-blue/35 dark:bg-vk-blue/45" />
+      <div className="absolute bottom-1/4 right-[30%] w-3 h-3 rounded-full bg-vk-blue/30 dark:bg-vk-blue/40" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 text-center">
         {/* Section header */}

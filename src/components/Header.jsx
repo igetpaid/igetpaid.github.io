@@ -2,20 +2,10 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
-import { sections } from '../utils/sectionThemes'
-
-// Sections that have their own dedicated page
-const sectionRoutes = {
-  gamedev: '/gamedev',
-}
 
 const navItems = [
   { id: 'hero', label: 'Главная' },
-  { id: 'gamedev', label: 'GameDev' },
-  { id: 'ai', label: 'AI' },
-
-  { id: 'projects', label: 'Проекты' },
-
+  { id: 'projects', label: 'Проекты', href: '/projects' },
   { id: 'blog', label: 'Блог' },
   { id: 'contacts', label: 'Контакты' },
 ]
@@ -83,8 +73,8 @@ export default function Header() {
 
   // Handle nav click: route or smooth scroll
   const handleNavClick = (e, id) => {
-    const route = sectionRoutes[id]
-    if (route) {
+    const item = navItems.find((n) => n.id === id)
+    if (item?.href) {
       // Has dedicated page — Link handles this
       return
     }
@@ -101,7 +91,6 @@ export default function Header() {
   }
 
   const renderNavLink = (item, isMobile = false) => {
-    const route = sectionRoutes[item.id]
     const isActive = currentSection === item.id
     const linkClass = isMobile
       ? `block px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
@@ -113,10 +102,10 @@ export default function Header() {
           isActive ? activeNavClass : inactiveNavClass
         }`
 
-    if (route) {
+    if (item.href) {
       return (
         <Link
-          to={route}
+          to={item.href}
           className={linkClass}
           onClick={() => isMobile && setMobileMenuOpen(false)}
         >

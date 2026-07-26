@@ -16,7 +16,6 @@ import {
   ChevronRight,
   Download,
   Quote,
-  Tag,
   BarChart3,
   ExternalLink,
 } from 'lucide-react'
@@ -37,6 +36,8 @@ export default function ProjectPage() {
   const project = getProjectDetails(projectId)
 
   const [selectedScreenshot, setSelectedScreenshot] = useState(0)
+  const [hasHoveredGallery, setHasHoveredGallery] = useState(false)
+  const [isGalleryHovered, setIsGalleryHovered] = useState(false)
 
   if (!project) {
     return (
@@ -89,24 +90,19 @@ export default function ProjectPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           {/* Back link */}
           <Link
-            to={`/${project.category}`}
+            to="/"
             className="inline-flex items-center gap-2 text-sm text-[var(--section-text-secondary)] hover:text-[var(--section-accent)] transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
-            Назад к {project.categoryLabel}
+            Назад
           </Link>
 
           {/* ─── Hero Section ─── */}
           <div className="mb-10">
-            <div className="flex items-start gap-4 flex-wrap">
+            <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[var(--section-text)] tracking-tight">
                 {project.title}
               </h1>
-              {project.version && (
-                <span className="mt-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-[var(--section-accent)]/10 text-[var(--section-accent)] border border-[var(--section-accent)]/20">
-                  v{project.version}
-                </span>
-              )}
             </div>
             <p className="text-lg sm:text-xl text-[var(--section-accent-secondary)] mt-2 font-medium">
               {project.subtitle}
@@ -144,10 +140,10 @@ export default function ProjectPage() {
                 className={`px-3 py-1.5 text-xs font-medium rounded-full ${
                   project.status === 'completed'
                     ? 'bg-emerald-500/10 text-emerald-500'
-                    : 'bg-amber-500/10 text-amber-500'
+                    : 'bg-yellow-500/10 text-yellow-500'
                 }`}
               >
-                {project.status === 'completed' ? 'Завершён' : 'В разработке'}
+                {project.status === 'completed' ? 'Завершён' : 'Активен'}
               </span>
             </div>
           </div>
@@ -156,7 +152,11 @@ export default function ProjectPage() {
           {screenshots.length > 0 && (
             <div className="mb-14">
               {/* Main image */}
-              <div className="relative rounded-2xl overflow-hidden bg-black/20 border border-[var(--section-border)]">
+              <div
+                className="relative rounded-2xl overflow-hidden bg-black/20 border border-[var(--section-border)]"
+                onMouseEnter={() => { setHasHoveredGallery(true); setIsGalleryHovered(true) }}
+                onMouseLeave={() => setIsGalleryHovered(false)}
+              >
                 <img
                   src={screenshots[selectedScreenshot].src}
                   alt={screenshots[selectedScreenshot].alt}
@@ -166,14 +166,18 @@ export default function ProjectPage() {
                   <>
                     <button
                       onClick={prevScreenshot}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                      className={`absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all ${
+                        hasHoveredGallery && !isGalleryHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                      }`}
                       aria-label="Предыдущий скриншот"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={nextScreenshot}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                      className={`absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all ${
+                        hasHoveredGallery && !isGalleryHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                      }`}
                       aria-label="Следующий скриншот"
                     >
                       <ChevronRight className="w-5 h-5" />
@@ -259,101 +263,6 @@ export default function ProjectPage() {
                 </motion.section>
               )}
 
-              {/* Download */}
-              {project.download && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
-                >
-                  <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
-                    <Download className="w-5 h-5 text-[var(--section-accent)]" />
-                    Скачать игру
-                  </h3>
-
-                  <div className="space-y-3">
-                    {/* Windows — ссылка на релиз */}
-                    {project.download?.windows ? (
-                      <a
-                        href={project.download.windows}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/15 transition-colors group"
-                      >
-                        <Monitor className="w-5 h-5 text-blue-500" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
-                          <p className="text-xs text-[var(--section-text-secondary)]">
-                            {project.download.note || 'Скачать .exe'}
-                          </p>
-                        </div>
-                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-blue-500 transition-colors" />
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
-                        <Monitor className="w-5 h-5 text-blue-500" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
-                          <p className="text-xs text-[var(--section-muted)]">
-                            Ссылка появится после публикации релиза
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* GitHub repo link */}
-                    {project.download?.github && (
-                      <a
-                        href={project.download.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-3 rounded-xl bg-slate-500/10 border border-slate-500/20 hover:bg-slate-500/15 transition-colors group"
-                      >
-                        <GitHubIcon className="w-5 h-5 text-[var(--section-text-secondary)]" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">GitHub</p>
-                          <p className="text-xs text-[var(--section-text-secondary)]">
-                            Исходный код, релизы, issues
-                          </p>
-                        </div>
-                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-[var(--section-text-secondary)] transition-colors" />
-                      </a>
-                    )}
-
-                    {/* Android — ссылка на релиз */}
-                    {project.download?.android ? (
-                      <a
-                        href={project.download.android}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/15 transition-colors group"
-                      >
-                        <Smartphone className="w-5 h-5 text-emerald-500" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
-                          <p className="text-xs text-[var(--section-text-secondary)]">
-                            {project.download.androidNote || 'Скачать .apk'}
-                          </p>
-                        </div>
-                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-emerald-500 transition-colors" />
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-                        <Smartphone className="w-5 h-5 text-emerald-500" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
-                          <p className="text-xs text-[var(--section-muted)]">
-                            Релиз для Android ожидается
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              )}
-
               {/* Comments */}
               {project.comments && project.comments.length > 0 && (
                 <motion.section
@@ -411,6 +320,120 @@ export default function ProjectPage() {
 
             {/* Sidebar */}
             <div className="space-y-6">
+              {/* Download */}
+              {project.download && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+                >
+                  <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
+                    <Download className="w-5 h-5 text-[var(--section-accent)]" />
+                    Скачать
+                  </h3>
+
+                  <div className="space-y-3">
+                    {/* RuStore */}
+                    {project.download?.rustore && (
+                      <a
+                        href={project.download.rustore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-violet-500/10 border border-violet-500/20 hover:bg-violet-500/15 transition-colors group"
+                      >
+                        <Smartphone className="w-5 h-5 text-violet-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">RuStore</p>
+                          <p className="text-xs text-[var(--section-text-secondary)]">
+                            {project.download.rustoreNote || 'Скачать из RuStore'}
+                          </p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-violet-500 transition-colors" />
+                      </a>
+                    )}
+
+                    {/* Windows */}
+                    {project.download?.windows ? (
+                      <a
+                        href={project.download.windows}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/15 transition-colors group"
+                      >
+                        <Monitor className="w-5 h-5 text-blue-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
+                          <p className="text-xs text-[var(--section-text-secondary)]">
+                            {project.download.note || 'Скачать .exe'}
+                          </p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-blue-500 transition-colors" />
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
+                        <Monitor className="w-5 h-5 text-blue-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
+                          <p className="text-xs text-[var(--section-muted)]">
+                            Ссылка появится после публикации релиза
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Android */}
+                    {project.download?.android ? (
+                      <a
+                        href={project.download.android}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/15 transition-colors group"
+                      >
+                        <Smartphone className="w-5 h-5 text-emerald-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
+                          <p className="text-xs text-[var(--section-text-secondary)]">
+                            {project.download.androidNote || 'Скачать .apk'}
+                          </p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-emerald-500 transition-colors" />
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                        <Smartphone className="w-5 h-5 text-emerald-500" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
+                          <p className="text-xs text-[var(--section-muted)]">
+                            Релиз для Android ожидается
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* GitHub */}
+                    {project.download?.github && (
+                      <a
+                        href={project.download.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-slate-500/10 border border-slate-500/20 hover:bg-slate-500/15 transition-colors group"
+                      >
+                        <GitHubIcon className="w-5 h-5 text-[var(--section-text-secondary)]" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-[var(--section-text)]">GitHub</p>
+                          <p className="text-xs text-[var(--section-text-secondary)]">
+                            Исходный код, релизы, issues
+                          </p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-[var(--section-text-secondary)] transition-colors" />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
               {/* Tech specs */}
               {project.tech && (
                 <motion.div
@@ -442,16 +465,6 @@ export default function ProjectPage() {
                         <p className="text-xs text-[var(--section-muted)]">Язык</p>
                         <p className="text-sm font-medium text-[var(--section-text)]">
                           {project.tech.language}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <Tag className="w-4 h-4 text-[var(--section-muted)]" />
-                      <div>
-                        <p className="text-xs text-[var(--section-muted)]">Версия</p>
-                        <p className="text-sm font-medium text-[var(--section-text)]">
-                          {project.version || '—'}
                         </p>
                       </div>
                     </div>

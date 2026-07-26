@@ -13,16 +13,10 @@ export const sections = [
     accent: '#2680EB',
   },
   {
-    id: 'gamedev',
-    label: 'GameDev',
+    id: 'featured',
+    label: 'HardReset',
     themeClass: 'section-gamedev',
     accent: '#ff6b9d',
-  },
-  {
-    id: 'ai',
-    label: 'AI & Нейросети',
-    themeClass: 'section-ai',
-    accent: '#4f8cff',
   },
   {
     id: 'projects',

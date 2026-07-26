@@ -4,7 +4,7 @@ const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
   const [activeSection, setActiveSection] = useState('hero')
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(true)
 
   // Apply .dark class to <html> when dark mode is active
   useEffect(() => {

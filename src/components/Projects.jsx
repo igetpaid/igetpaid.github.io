@@ -1,11 +1,50 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { ExternalLink, FileCode2, CheckCircle2, Timer, Code2 } from 'lucide-react'
+import { ExternalLink, FileCode2, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import GitHubIcon from './icons/GitHubIcon'
 import { projects } from '../data/projects'
 
-const statusConfig = {
-  active: { icon: CheckCircle2, label: 'Активен', color: 'text-green-600 bg-green-50' },
-  paused: { icon: Timer, label: 'На паузе', color: 'text-amber-600 bg-amber-50' },
+function ProjectPreview({ project }) {
+  const screenshots = project.screenshots || []
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (screenshots.length < 2) return
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % screenshots.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [screenshots.length])
+
+  if (project.image) {
+    return (
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover"
+      />
+    )
+  }
+
+  if (screenshots.length > 0) {
+    return (
+      <>
+        {screenshots.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+              i === current ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+      </>
+    )
+  }
+
+  return <FileCode2 className="w-10 h-10 text-vk-blue/30" />
 }
 
 export default function Projects() {
@@ -19,22 +58,9 @@ export default function Projects() {
       <div className="absolute -right-60 -bottom-40 h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-vk-blue/12 via-blue-400/5 to-transparent blur-[160px]" />
       <div className="absolute left-1/3 bottom-10 h-[300px] w-[300px] rounded-full bg-vk-blue/5 blur-[120px]" />
 
-      {/* Decorative: grid pattern */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.06]"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern id="projects-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#2680EB" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#projects-grid)" />
-      </svg>
-
       {/* Decorative: diagonal accent lines */}
       <svg
-        className="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.07]"
+        className="absolute inset-0 w-full h-full opacity-[0.08] dark:opacity-[0.14]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <line x1="15%" y1="0" x2="35%" y2="100%" stroke="#2680EB" strokeWidth="1" />
@@ -42,10 +68,10 @@ export default function Projects() {
       </svg>
 
       {/* Decorative: floating dots */}
-      <div className="absolute top-1/3 left-[5%] w-2 h-2 rounded-full bg-vk-blue/15 dark:bg-vk-blue/25" />
-      <div className="absolute top-2/3 right-[8%] w-3 h-3 rounded-full bg-vk-blue/10 dark:bg-vk-blue/20" />
-      <div className="absolute bottom-1/4 left-[20%] w-1.5 h-1.5 rounded-full bg-vk-blue/15 dark:bg-vk-blue/25" />
-      <div className="absolute top-1/4 right-[25%] w-2 h-2 rounded-full bg-vk-blue/10 dark:bg-vk-blue/20" />
+      <div className="absolute top-1/3 left-[5%] w-3 h-3 rounded-full bg-vk-blue/35 dark:bg-vk-blue/45" />
+      <div className="absolute top-2/3 right-[8%] w-3.5 h-3.5 rounded-full bg-vk-blue/30 dark:bg-vk-blue/40" />
+      <div className="absolute bottom-1/4 left-[20%] w-2.5 h-2.5 rounded-full bg-vk-blue/35 dark:bg-vk-blue/45" />
+      <div className="absolute top-1/4 right-[25%] w-3 h-3 rounded-full bg-vk-blue/30 dark:bg-vk-blue/40" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section header */}
@@ -74,46 +100,26 @@ export default function Projects() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-12 space-y-8"
         >
-          {projects.map((project, i) => {
-            const status = statusConfig[project.status]
-            const StatusIcon = status?.icon
-
-            return (
-              <div
+          {projects.map((project, i) => (
+              <Link
                 key={project.id}
-                className="group p-6 sm:p-8 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-vk-blue/20 hover:shadow-lg hover:shadow-vk-blue/5 transition-all duration-300"
+                to={`/${project.slug}`}
+                className="group block p-6 sm:p-8 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-vk-blue/20 hover:shadow-lg hover:shadow-vk-blue/5 transition-all duration-300"
               >
                 <div className="flex flex-col sm:flex-row items-start gap-6">
-                  {/* Placeholder image */}
-                  <div className="shrink-0 w-full sm:w-48 h-32 rounded-xl bg-gradient-to-br from-vk-blue/10 to-blue-200/30 flex items-center justify-center overflow-hidden">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <FileCode2 className="w-10 h-10 text-vk-blue/30" />
-                    )}
+                  {/* Preview image / slideshow */}
+                  <div className="shrink-0 w-full sm:w-72 aspect-video rounded-xl bg-gradient-to-br from-vk-blue/10 to-blue-200/30 flex items-center justify-center overflow-hidden relative">
+                    <ProjectPreview project={project} />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-4 flex-wrap">
-                      <div>
-                        <h3 className="text-xl font-bold text-[var(--section-text)] group-hover:text-vk-blue transition-colors">
-                          {project.title}
-                        </h3>
-                        {project.subtitle && (
-                          <p className="text-sm text-[var(--section-text-secondary)] mt-0.5">{project.subtitle}</p>
-                        )}
-                      </div>
-                      {/* Status badge */}
-                      {status && (
-                        <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium shrink-0 ${status.color}`}>
-                          <StatusIcon className="w-3 h-3" />
-                          {status.label}
-                        </span>
+                    <div>
+                      <h3 className="text-xl font-bold text-[var(--section-text)] group-hover:text-vk-blue transition-colors">
+                        {project.title}
+                      </h3>
+                      {project.subtitle && (
+                        <p className="text-sm text-[var(--section-text-secondary)] mt-0.5">{project.subtitle}</p>
                       )}
                     </div>
 
@@ -136,33 +142,26 @@ export default function Projects() {
                     {/* Links */}
                     <div className="mt-4 flex items-center gap-4">
                       {project.links.github && (
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <span
                           className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--section-text)] hover:text-vk-blue transition-colors"
                         >
                           <GitHubIcon className="w-4 h-4" />
                           Исходники
-                        </a>
+                        </span>
                       )}
                       {project.links.release && (
-                        <a
-                          href={project.links.release}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <span
                           className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--section-text)] hover:text-vk-blue transition-colors"
                         >
                           <ExternalLink className="w-4 h-4" />
                           Скачать
-                        </a>
+                        </span>
                       )}
                     </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              </Link>
+            ))}
         </motion.div>
 
         {projects.length === 0 && (
@@ -174,6 +173,24 @@ export default function Projects() {
           >
             <FileCode2 className="w-12 h-12 text-[var(--section-muted)] mx-auto mb-4" />
             <p className="text-[var(--section-text-secondary)] text-lg">Проекты скоро появятся</p>
+          </motion.div>
+        )}
+
+        {projects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-10 text-center"
+          >
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-vk-blue/10 text-vk-blue font-medium hover:bg-vk-blue/20 transition-all duration-200"
+            >
+              Все проекты
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         )}
       </div>

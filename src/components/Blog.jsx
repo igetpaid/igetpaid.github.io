@@ -15,6 +15,20 @@ export default function Blog() {
       {/* Background */}
       <div className="absolute top-20 -right-40 h-[400px] w-[400px] rounded-full bg-amber-500/5 blur-[150px]" />
 
+      {/* Diagonal lines */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.08] dark:opacity-[0.14]"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line x1="20%" y1="0" x2="40%" y2="100%" stroke="#d97706" strokeWidth="1" />
+        <line x1="75%" y1="0" x2="55%" y2="100%" stroke="#d97706" strokeWidth="1" />
+      </svg>
+
+      {/* Floating dots */}
+      <div className="absolute top-1/4 left-[10%] w-3 h-3 rounded-full bg-amber-500/35 dark:bg-amber-500/45" />
+      <div className="absolute bottom-1/3 right-[12%] w-3.5 h-3.5 rounded-full bg-amber-500/30 dark:bg-amber-500/40" />
+      <div className="absolute top-3/4 left-[30%] w-2.5 h-2.5 rounded-full bg-amber-500/35 dark:bg-amber-500/45" />
+
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6">
         {/* Section header */}
         <motion.div
