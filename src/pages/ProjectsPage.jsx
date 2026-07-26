@@ -149,7 +149,7 @@ export default function ProjectsPage() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-[var(--section-card-bg)] text-[var(--section-text)]"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full bg-white/10 dark:bg-white/10 text-[var(--section-text-secondary)] border border-[var(--section-border)]"
                         >
                           {tag}
                         </span>

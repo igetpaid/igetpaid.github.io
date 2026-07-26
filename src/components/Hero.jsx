@@ -70,7 +70,7 @@ export default function Hero() {
             GitHub
           </a>
           <a
-            href="https://vk.com/igetpaid"
+            href="https://vk.ru/igor_tengel"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl border-2 border-[var(--section-text-secondary)]/20 text-[var(--section-text-secondary)] font-semibold text-base hover:border-[var(--section-accent)]/30 hover:text-[var(--section-accent)] hover:bg-[var(--section-accent-light)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"

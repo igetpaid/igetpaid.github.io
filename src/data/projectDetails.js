@@ -13,6 +13,9 @@ export const projectDetails = {
       'Работает локально и бесплатно на базе модели Whisper. ' +
       'Я форкнул проект и добавил режим скрытого запуска в трей — теперь программа стартует с Windows и незаметно сидит в трее.',
 
+    tags: ['Open Source', 'Windows'],
+    date: '2026',
+
     version: '1.3.9',
     platforms: ['Windows'],
 
@@ -83,11 +86,16 @@ export const projectDetails = {
 
     download: {
       windows: 'https://github.com/igetpaid/light-whisper/releases/latest',
-      github: 'https://github.com/igetpaid/light-whisper',
       note: 'Последняя версия с поддержкой запуска в трее',
     },
 
-    screenshots: [],
+    relatedLinks: {
+      github: 'https://github.com/igetpaid/light-whisper',
+    },
+
+    screenshots: [
+      { src: '/gallery/lightwhisper/preview.jpg', alt: 'LightWhisper — интерфейс программы' },
+    ],
 
     links: {},
 
@@ -103,10 +111,12 @@ export const projectDetails = {
     categoryLabel: 'GameDev',
 
     description:
-      'Hard Reset — это 2D-симулятор компьютерного мастера с элементами драмы, написанный на Godot 4. ' +
-      'Игрок — киберспортсмен, проигравший квалификацию из-за котёнка, теперь чинит компьютеры в мастерской своего дяди. ' +
-      'Каждый клиент — уникальный персонаж со своей моделькой и дизайном корпуса. 3 уровня, 2 концовки.',
+      'Hard Reset — это симулятор компьютерного мастера с увлекательным сюжетом.\n' +
+      'Вы — бывший киберспортсмен, который после проигранного турнира вынужден работать в мастерской своего дяди. Клиенты приходят с разными проблемами. Каждую неисправность нужно диагностировать и устранить через мини-игры: открутить болты, почистить пыль, заменить деталь.\n' +
+      '🎯 Сможете ли вы вернуться в киберспорт или навсегда останетесь мастером на час?',
 
+    tags: ['Open Source', 'Android', 'Windows'],
+    date: '13 июля 2026',
     version: '1.0',
     platforms: ['Windows', 'Android'],
 
@@ -187,10 +197,15 @@ export const projectDetails = {
       windows: 'https://github.com/igetpaid/HardReset/releases/download/v1.2.1/hardreset.exe',
       android: 'https://github.com/igetpaid/HardReset/releases/download/v1.2.1/hardreset.apk',
       rustore: 'https://www.rustore.ru/catalog/app/com.igetpaid.hardreset',
-      github: 'https://github.com/igetpaid/HardReset',
       note: 'Релиз v1.2.1 — Windows (.exe)',
       androidNote: 'Релиз v1.2.1 — Android (.apk)',
       rustoreNote: 'Hard Reset в RuStore',
+    },
+
+    relatedLinks: {
+      github: 'https://github.com/igetpaid/HardReset',
+      vk: 'https://vk.ru/igor_tengel',
+      vkLabel: 'Пост об игре',
     },
 
     comments: [

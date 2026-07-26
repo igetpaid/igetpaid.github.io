@@ -21,12 +21,13 @@ import {
 } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import ProjectDescription from '../components/ProjectDescription'
 import VKIcon from '../components/icons/VKIcon'
 import GitHubIcon from '../components/icons/GitHubIcon'
 import { getProjectDetails } from '../data/projectDetails'
 
 const SocialIcon = ({ url }) => {
-  if (url.includes('vk.com')) return <VKIcon className="w-4 h-4" />
+  if (url.includes('vk.com') || url.includes('vk.ru')) return <VKIcon className="w-4 h-4" />
   if (url.includes('github.com')) return <GitHubIcon className="w-4 h-4" />
   return null
 }
@@ -107,44 +108,23 @@ export default function ProjectPage() {
             <p className="text-lg sm:text-xl text-[var(--section-accent-secondary)] mt-2 font-medium">
               {project.subtitle}
             </p>
-            <p className="mt-6 text-lg text-[var(--section-text-secondary)] leading-relaxed max-w-3xl">
-              {project.description}
-            </p>
+              <ProjectDescription description={project.description} className="mt-6 text-lg text-[var(--section-text-secondary)] leading-relaxed max-w-3xl" />
 
-            {/* Tags + Year + Platforms */}
-            <div className="flex flex-wrap items-center gap-3 mt-6">
-              {project.tech && (
-                <span className="px-3 py-1.5 text-xs font-medium rounded-full bg-[var(--section-accent)]/10 text-[var(--section-accent)]">
-                  {project.tech.engine} • {project.tech.language}
+            {/* Tags + Date */}
+            <div className="flex flex-wrap items-center gap-2 mt-6">
+              {project.tags?.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full bg-white/10 dark:bg-white/10 text-[var(--section-text-secondary)] border border-[var(--section-border)]"
+                >
+                  {tag}
+                </span>
+              ))}
+              {project.date && (
+                <span className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--section-muted)]">
+                  Релиз: {project.date}
                 </span>
               )}
-              {project.platforms && project.platforms.includes('Android') && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                  <Smartphone className="w-3 h-3" />
-                  Android
-                </span>
-              )}
-              {project.platforms && project.platforms.includes('Windows') && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20">
-                  <Monitor className="w-3 h-3" />
-                  Windows
-                </span>
-              )}
-              {project.year && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-[var(--section-card-bg)] text-[var(--section-text-secondary)] border border-[var(--section-border)]">
-                  <Calendar className="w-3 h-3" />
-                  {project.year}
-                </span>
-              )}
-              <span
-                className={`px-3 py-1.5 text-xs font-medium rounded-full ${
-                  project.status === 'completed'
-                    ? 'bg-emerald-500/10 text-emerald-500'
-                    : 'bg-yellow-500/10 text-yellow-500'
-                }`}
-              >
-                {project.status === 'completed' ? 'Завершён' : 'Активен'}
-              </span>
             </div>
           </div>
 
@@ -185,7 +165,7 @@ export default function ProjectPage() {
                   </>
                 )}
                 {/* Counter */}
-                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-black/60 text-white text-xs font-medium">
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-black/60 text-white text-sm font-medium">
                   {selectedScreenshot + 1} / {screenshots.length}
                 </div>
               </div>
@@ -297,7 +277,7 @@ export default function ProjectPage() {
                                 <SocialIcon url={comment.authorLink} />
                                 {comment.author}
                               </a>
-                              <span className="text-xs text-[var(--section-muted)]">
+                              <span className="text-sm text-[var(--section-muted)]">
                                 {formatDate(comment.date)}
                               </span>
                             </div>
@@ -346,7 +326,7 @@ export default function ProjectPage() {
                         <Smartphone className="w-5 h-5 text-violet-500" />
                         <div className="flex-1">
                           <p className="text-sm font-medium text-[var(--section-text)]">RuStore</p>
-                          <p className="text-xs text-[var(--section-text-secondary)]">
+                          <p className="text-sm text-[var(--section-text-secondary)]">
                             {project.download.rustoreNote || 'Скачать из RuStore'}
                           </p>
                         </div>
@@ -355,7 +335,7 @@ export default function ProjectPage() {
                     )}
 
                     {/* Windows */}
-                    {project.download?.windows ? (
+                    {project.download?.windows && (
                       <a
                         href={project.download.windows}
                         target="_blank"
@@ -365,26 +345,16 @@ export default function ProjectPage() {
                         <Monitor className="w-5 h-5 text-blue-500" />
                         <div className="flex-1">
                           <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
-                          <p className="text-xs text-[var(--section-text-secondary)]">
+                          <p className="text-sm text-[var(--section-text-secondary)]">
                             {project.download.note || 'Скачать .exe'}
                           </p>
                         </div>
                         <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-blue-500 transition-colors" />
                       </a>
-                    ) : (
-                      <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/10">
-                        <Monitor className="w-5 h-5 text-blue-500" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">Windows</p>
-                          <p className="text-xs text-[var(--section-muted)]">
-                            Ссылка появится после публикации релиза
-                          </p>
-                        </div>
-                      </div>
                     )}
 
                     {/* Android */}
-                    {project.download?.android ? (
+                    {project.download?.android && (
                       <a
                         href={project.download.android}
                         target="_blank"
@@ -394,83 +364,77 @@ export default function ProjectPage() {
                         <Smartphone className="w-5 h-5 text-emerald-500" />
                         <div className="flex-1">
                           <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
-                          <p className="text-xs text-[var(--section-text-secondary)]">
+                          <p className="text-sm text-[var(--section-text-secondary)]">
                             {project.download.androidNote || 'Скачать .apk'}
                           </p>
                         </div>
                         <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-emerald-500 transition-colors" />
                       </a>
-                    ) : (
-                      <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-                        <Smartphone className="w-5 h-5 text-emerald-500" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">Android (.apk)</p>
-                          <p className="text-xs text-[var(--section-muted)]">
-                            Релиз для Android ожидается
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* GitHub */}
-                    {project.download?.github && (
-                      <a
-                        href={project.download.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-3 rounded-xl bg-slate-500/10 border border-slate-500/20 hover:bg-slate-500/15 transition-colors group"
-                      >
-                        <GitHubIcon className="w-5 h-5 text-[var(--section-text-secondary)]" />
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-[var(--section-text)]">GitHub</p>
-                          <p className="text-xs text-[var(--section-text-secondary)]">
-                            Исходный код, релизы, issues
-                          </p>
-                        </div>
-                        <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-[var(--section-text-secondary)] transition-colors" />
-                      </a>
                     )}
                   </div>
                 </motion.div>
               )}
 
-              {/* Tech specs */}
-              {project.tech && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
-                >
-                  <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
-                    <Code2 className="w-5 h-5 text-[var(--section-accent)]" />
-                    {project.tech.title}
-                  </h3>
+              {/* Related Links */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="p-6 rounded-2xl bg-[var(--section-card-bg)] border border-[var(--section-border)]"
+              >
+                <h3 className="text-lg font-bold text-[var(--section-text)] mb-4 flex items-center gap-2">
+                  <ExternalLink className="w-5 h-5 text-[var(--section-accent)]" />
+                  Ссылки
+                </h3>
 
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <Monitor className="w-4 h-4 text-[var(--section-muted)]" />
-                      <div>
-                        <p className="text-xs text-[var(--section-muted)]">Движок</p>
-                        <p className="text-sm font-medium text-[var(--section-text)]">
-                          {project.tech.engine}
-                        </p>
+                <div className="space-y-3">
+                  {project.relatedLinks?.github && (
+                    <a
+                      href={project.relatedLinks.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-[var(--section-accent)]/30 transition-colors group"
+                    >
+                      <GitHubIcon className="w-5 h-5 text-[var(--section-text-secondary)]" />
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-[var(--section-text)]">GitHub</p>
+                        <p className="text-sm text-[var(--section-text-secondary)]">Исходный код</p>
                       </div>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <Code2 className="w-4 h-4 text-[var(--section-muted)]" />
-                      <div>
-                        <p className="text-xs text-[var(--section-muted)]">Язык</p>
-                        <p className="text-sm font-medium text-[var(--section-text)]">
-                          {project.tech.language}
-                        </p>
+                      <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-[var(--section-accent)] transition-colors" />
+                    </a>
+                  )}
+                  {project.relatedLinks?.vk && (
+                    <a
+                      href={project.relatedLinks.vk}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-[var(--section-accent)]/30 transition-colors group"
+                    >
+                      <VKIcon className="w-5 h-5 text-vk-blue" />
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-[var(--section-text)]">ВКонтакте</p>
+                        <p className="text-sm text-[var(--section-text-secondary)]">{project.relatedLinks.vkLabel || 'Пост об игре'}</p>
                       </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
+                      <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-[var(--section-accent)] transition-colors" />
+                    </a>
+                  )}
+                  {project.relatedLinks?.url3 && (
+                    <a
+                      href={project.relatedLinks.url3}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-[var(--section-card-bg)] border border-[var(--section-border)] hover:border-[var(--section-accent)]/30 transition-colors group"
+                    >
+                      <ExternalLink className="w-5 h-5 text-[var(--section-text-secondary)]" />
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-[var(--section-text)]">{project.relatedLinks.label3}</p>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-[var(--section-muted)] group-hover:text-[var(--section-accent)] transition-colors" />
+                    </a>
+                  )}
+                </div>
+              </motion.div>
 
               {/* Development stats */}
               {project.development && (
@@ -490,7 +454,7 @@ export default function ProjectPage() {
                     <div className="flex items-center gap-3">
                       <Clock className="w-4 h-4 text-[var(--section-muted)]" />
                       <div>
-                        <p className="text-xs text-[var(--section-muted)]">Суммарное время</p>
+                        <p className="text-sm text-[var(--section-muted)]">Суммарное время</p>
                         <p className="text-sm font-medium text-[var(--section-text)]">
                           {project.development.stats?.totalTime}
                         </p>
@@ -500,7 +464,7 @@ export default function ProjectPage() {
                     <div className="flex items-center gap-3">
                       <Gamepad2 className="w-4 h-4 text-[var(--section-muted)]" />
                       <div>
-                        <p className="text-xs text-[var(--section-muted)]">В редакторе Godot</p>
+                        <p className="text-sm text-[var(--section-muted)]">В редакторе Godot</p>
                         <p className="text-sm font-medium text-[var(--section-text)]">
                           {project.development.stats?.engineTime}
                         </p>
@@ -508,19 +472,19 @@ export default function ProjectPage() {
                     </div>
 
                     <div className="pt-3 border-t border-[var(--section-border)] space-y-2">
-                      <p className="text-xs text-[var(--section-muted)]">Платформы</p>
+                      <p className="text-sm text-[var(--section-muted)]">Платформы</p>
                       <div className="flex flex-wrap gap-2">
                         {project.development.platforms?.map((p) => (
                           <span
                             key={p}
-                            className="px-2.5 py-1 rounded-md text-xs font-medium bg-[var(--section-accent)]/10 text-[var(--section-accent)]"
+                            className="px-2.5 py-1 rounded-md text-sm font-medium bg-[var(--section-accent)]/10 text-[var(--section-accent)]"
                           >
                             {p}
                           </span>
                         ))}
                       </div>
                       {project.development.note && (
-                        <p className="text-xs text-[var(--section-muted)] italic mt-2">
+                        <p className="text-sm text-[var(--section-muted)] italic mt-2">
                           {project.development.note}
                         </p>
                       )}

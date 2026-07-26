@@ -81,15 +81,9 @@ export default function Projects() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vk-blue/10 text-vk-blue text-xs font-semibold tracking-wider uppercase mb-4">
-            Projects
-          </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
             Проекты
           </h2>
-          <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-2xl">
-            То, что я сделал и чем могу гордиться. Open source, десктоп, автоматизация.
-          </p>
         </motion.div>
 
         {/* Projects list */}
@@ -132,7 +126,7 @@ export default function Projects() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-[var(--section-card-bg)] text-[var(--section-text)]"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full bg-white/10 dark:bg-white/10 text-[var(--section-text-secondary)] border border-[var(--section-border)]"
                         >
                           {tag}
                         </span>

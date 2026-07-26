@@ -6,7 +6,7 @@ import { useTheme } from '../context/ThemeContext'
 const navItems = [
   { id: 'hero', label: 'Главная' },
   { id: 'projects', label: 'Проекты', href: '/projects' },
-  { id: 'blog', label: 'Блог' },
+  { id: 'blog', label: 'VK' },
   { id: 'contacts', label: 'Контакты' },
 ]
 

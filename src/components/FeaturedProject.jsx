@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Monitor, Smartphone, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react'
 import { getProjectDetails } from '../data/projectDetails'
+import ProjectDescription from './ProjectDescription'
 
 export default function FeaturedProject() {
   const project = getProjectDetails('hardreset')
@@ -57,7 +58,7 @@ export default function FeaturedProject() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gamedev-accent/15 text-gamedev-accent text-xs font-semibold tracking-wider mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gamedev-accent/15 text-gamedev-accent text-sm font-semibold tracking-wider mb-4">
             GameDev
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
@@ -105,7 +106,7 @@ export default function FeaturedProject() {
               </button>
 
               {/* Counter */}
-              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-black/60 text-white text-xs font-medium">
+              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-black/60 text-white text-sm font-medium">
                 {currentSlide + 1} / {previews.length}
               </div>
             </div>
@@ -134,22 +135,25 @@ export default function FeaturedProject() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <p className="text-[var(--section-text-secondary)] leading-relaxed">
-              {project.description}
-            </p>
+            <ProjectDescription description={project.description} />
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {['Godot 4', 'GDScript', 'Photoshop', 'GameDev'].map((tag) => (
+            {/* Tags + Date */}
+            <div className="flex flex-wrap items-center gap-2">
+              {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2.5 py-1 rounded-lg text-xs font-medium bg-gamedev-accent/10 text-gamedev-accent"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full bg-white/10 dark:bg-white/10 text-[var(--section-text-secondary)] border border-[var(--section-border)]"
                 >
                   {tag}
                 </span>
               ))}
+              {project.date && (
+                <span className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--section-muted)]">
+                  Релиз: {project.date}
+                </span>
+              )}
             </div>
 
             {/* Platforms */}

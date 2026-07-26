@@ -6,8 +6,8 @@ const contacts = [
   {
     icon: MessageCircle,
     label: 'VK',
-    handle: '@igetpaid',
-    href: 'https://vk.com/igetpaid',
+    handle: 'vk.ru/igor_tengel',
+    href: 'https://vk.ru/igor_tengel',
     iconColor: 'text-vk-blue',
   },
   {

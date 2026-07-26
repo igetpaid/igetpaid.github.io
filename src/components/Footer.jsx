@@ -10,15 +10,17 @@ export default function Footer() {
           © {currentYear} Игорь Тенгель
         </p>
         <p className="text-sm text-[var(--section-text-secondary)] inline-flex items-center gap-1">
-          Сделано с <Heart className="w-3.5 h-3.5 text-red-400 fill-red-400" /> 
-          и открытым исходным кодом
+          Сделано с <Heart className="w-5 h-5 text-red-400 fill-red-400" />
         </p>
         <div className="flex items-center gap-4 text-sm text-[var(--section-text-secondary)]">
           <a href="https://github.com/igetpaid" target="_blank" rel="noopener noreferrer" className="hover:text-vk-blue transition-colors">
             GitHub
           </a>
-          <a href="https://vk.com/igetpaid" target="_blank" rel="noopener noreferrer" className="hover:text-vk-blue transition-colors">
+          <a href="https://vk.ru/igor_tengel" target="_blank" rel="noopener noreferrer" className="hover:text-vk-blue transition-colors">
             VK
+          </a>
+          <a href="https://t.me/igor_tengel" target="_blank" rel="noopener noreferrer" className="hover:text-vk-blue transition-colors">
+            Telegram
           </a>
         </div>
       </div>

@@ -123,7 +123,7 @@ export default function Gallery() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--section-accent)]/10 text-[var(--section-accent)] text-xs font-semibold tracking-wider uppercase mb-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--section-accent)]/10 text-[var(--section-accent)] text-sm font-semibold tracking-wider uppercase mb-4">
             Gallery
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
@@ -144,7 +144,7 @@ export default function Gallery() {
             <ImageIcon className="w-12 h-12 text-[var(--section-muted)] mx-auto mb-4" />
             <p className="text-[var(--section-text-secondary)] text-lg">Галерея пуста</p>
             <p className="text-[var(--section-text-secondary)] text-sm mt-1">
-              Добавь изображения в <code className="text-xs bg-[var(--section-card-bg)] px-1.5 py-0.5 rounded">public/gallery/</code>
+              Добавь изображения в <code className="text-sm bg-[var(--section-card-bg)] px-1.5 py-0.5 rounded">public/gallery/</code>
             </p>
           </motion.div>
         ) : (
@@ -193,7 +193,7 @@ export default function Gallery() {
                       <GalleryImage image={image} />
                       {image.title && (
                         <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                          <p className="text-xs text-white truncate">{image.title}</p>
+                          <p className="text-sm text-white truncate">{image.title}</p>
                         </div>
                       )}
                     </button>
