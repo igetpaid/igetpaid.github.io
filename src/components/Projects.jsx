@@ -30,16 +30,22 @@ function ProjectPreview({ project }) {
   if (screenshots.length > 0) {
     return (
       <>
-        {screenshots.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt=""
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-              i === current ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
+        {screenshots.map((src, i) => {
+          const diff = Math.abs(i - current)
+          const isVisible = diff <= 1 || diff === screenshots.length - 1
+          if (!isVisible) return null
+          return (
+            <img
+              key={i}
+              src={src}
+              alt=""
+              loading={i === current ? 'eager' : 'lazy'}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                i === current ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          )
+        })}
       </>
     )
   }

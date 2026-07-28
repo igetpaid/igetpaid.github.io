@@ -79,17 +79,23 @@ export default function FeaturedProject() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <div className="group relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-gamedev-accent/20 to-gamedev-secondary/20 border border-[var(--section-border)]">
-              {/* Images */}
-              {previews.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt=""
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                    i === currentSlide ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
-              ))}
+              {/* Images — only render current + neighbors for performance */}
+              {previews.map((src, i) => {
+                const diff = Math.abs(i - currentSlide)
+                const isVisible = diff <= 1 || diff === previews.length - 1
+                if (!isVisible) return null
+                return (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    loading={i === currentSlide ? 'eager' : 'lazy'}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                      i === currentSlide ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                )
+              })}
 
               {/* Arrows — hidden by default, visible on hover */}
               <button
@@ -123,7 +129,7 @@ export default function FeaturedProject() {
                       : 'border-transparent opacity-60 hover:opacity-90'
                   }`}
                 >
-                  <img src={src} alt="" className="w-full h-full object-cover" />
+                  <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

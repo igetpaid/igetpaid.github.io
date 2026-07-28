@@ -187,7 +187,7 @@ export default function ProjectPage() {
                         : 'border-transparent opacity-60 hover:opacity-90'
                     }`}
                   >
-                    <img src={ss.src} alt={ss.alt} className="w-full h-full object-cover" />
+                    <img src={ss.src} alt={ss.alt} loading="lazy" className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
