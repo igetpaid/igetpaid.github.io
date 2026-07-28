@@ -17,16 +17,6 @@ export default function Hero() {
 
       {/* Grid pattern overlay - removed */}
 
-      {/* Diagonal accent lines */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.08] dark:opacity-[0.14]"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <line x1="10%" y1="0" x2="30%" y2="100%" stroke="#2680EB" strokeWidth="1" />
-        <line x1="85%" y1="0" x2="65%" y2="100%" stroke="#2680EB" strokeWidth="1" />
-        <line x1="50%" y1="0" x2="55%" y2="100%" stroke="#2680EB" strokeWidth="0.5" />
-      </svg>
-
       {/* Floating dots */}
       <div className="absolute top-1/4 left-[8%] w-3 h-3 rounded-full bg-vk-blue/40 dark:bg-vk-blue/50" />
       <div className="absolute top-3/4 right-[12%] w-3.5 h-3.5 rounded-full bg-vk-blue/35 dark:bg-vk-blue/45" />

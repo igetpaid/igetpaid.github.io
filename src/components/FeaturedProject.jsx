@@ -12,19 +12,28 @@ export default function FeaturedProject() {
   const previews = project.screenshots.map((s) => s.src)
 
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [lastManualInteraction, setLastManualInteraction] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
+      const now = Date.now()
+      if (now - lastManualInteraction < 6000) return
       setCurrentSlide((prev) => (prev + 1) % previews.length)
     }, 3000)
     return () => clearInterval(timer)
-  }, [])
+  }, [lastManualInteraction])
 
   const prevSlide = () => {
+    setLastManualInteraction(Date.now())
     setCurrentSlide((prev) => (prev === 0 ? previews.length - 1 : prev - 1))
   }
   const nextSlide = () => {
+    setLastManualInteraction(Date.now())
     setCurrentSlide((prev) => (prev === previews.length - 1 ? 0 : prev + 1))
+  }
+  const goToSlide = (i) => {
+    setLastManualInteraction(Date.now())
+    setCurrentSlide(i)
   }
 
   return (
@@ -70,11 +79,11 @@ export default function FeaturedProject() {
         </motion.div>
 
         {/* Content grid */}
-        <div className="mt-10 grid lg:grid-cols-2 gap-10">
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10">
           {/* Left: Slideshow with arrows */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
@@ -122,7 +131,7 @@ export default function FeaturedProject() {
               {previews.map((src, i) => (
                 <button
                   key={i}
-                  onClick={() => setCurrentSlide(i)}
+                  onClick={() => goToSlide(i)}
                   className={`shrink-0 w-20 h-12 rounded-lg overflow-hidden border-2 transition-all ${
                     i === currentSlide
                       ? 'border-gamedev-accent opacity-100'
@@ -137,30 +146,13 @@ export default function FeaturedProject() {
 
           {/* Right: Description */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-4"
           >
             <ProjectDescription description={project.description} />
-
-            {/* Tags + Date */}
-            <div className="flex flex-wrap items-center gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full bg-white/10 dark:bg-white/10 text-[var(--section-text-secondary)] border border-[var(--section-border)]"
-                >
-                  {tag}
-                </span>
-              ))}
-              {project.date && (
-                <span className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--section-muted)]">
-                  Релиз: {project.date}
-                </span>
-              )}
-            </div>
 
             {/* Platforms */}
             <div className="flex items-center gap-4 text-sm text-[var(--section-text-secondary)]">
