@@ -22,7 +22,7 @@ export const projects = projectOrder
     category: p.category,
     title: p.title,
     subtitle: p.subtitle,
-    description: p.description,
+    description: p.description || p.about?.paragraphs?.join('\n') || '',
     tags: p.tags || [],
     date: p.date || null,
     links: p.links || {},

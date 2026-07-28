@@ -21,7 +21,6 @@ import {
 } from 'lucide-react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import ProjectDescription from '../components/ProjectDescription'
 import VKIcon from '../components/icons/VKIcon'
 import GitHubIcon from '../components/icons/GitHubIcon'
 import { getProjectDetails } from '../data/projectDetails'
@@ -108,8 +107,6 @@ export default function ProjectPage() {
             <p className="text-lg sm:text-xl text-[var(--section-accent-secondary)] mt-2 font-medium">
               {project.subtitle}
             </p>
-              <ProjectDescription description={project.description} className="mt-6 text-lg text-[var(--section-text-secondary)] leading-relaxed max-w-3xl" />
-
             {/* Tags + Date */}
             <div className="flex flex-wrap items-center gap-2 mt-6">
               {project.tags?.map((tag) => (
@@ -198,8 +195,8 @@ export default function ProjectPage() {
           <div className="grid lg:grid-cols-3 gap-10">
             {/* Main content */}
             <div className="lg:col-span-2 space-y-12">
-              {/* Story */}
-              {project.story && (
+              {/* About */}
+              {project.about && (
                 <motion.section
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -208,38 +205,15 @@ export default function ProjectPage() {
                 >
                   <h2 className="text-2xl font-bold text-[var(--section-text)] mb-4 flex items-center gap-3">
                     <span className="w-1 h-6 rounded-full bg-[var(--section-accent)]" />
-                    {project.story.title}
+                    {project.about.title}
                   </h2>
-                  <div className="space-y-4">
-                    {project.story.paragraphs.map((p, i) => (
-                      <p key={i} className="text-[var(--section-text-secondary)] leading-relaxed">
+                    <div className="space-y-4">
+                    {project.about?.paragraphs?.join('\n').split('\n').filter(Boolean).map((p, i) => (
+                      <p key={i} className="text-lg text-[var(--section-text-secondary)] leading-relaxed">
                         {p}
                       </p>
                     ))}
                   </div>
-                </motion.section>
-              )}
-
-              {/* Gameplay */}
-              {project.gameplay && (
-                <motion.section
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  <h2 className="text-2xl font-bold text-[var(--section-text)] mb-4 flex items-center gap-3">
-                    <span className="w-1 h-6 rounded-full bg-[var(--section-accent)]" />
-                    {project.gameplay.title}
-                  </h2>
-                  <div className="space-y-4">
-                    {project.gameplay.paragraphs.map((p, i) => (
-                      <p key={i} className="text-[var(--section-text-secondary)] leading-relaxed">
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-
                 </motion.section>
               )}
 

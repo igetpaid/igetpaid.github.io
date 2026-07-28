@@ -152,7 +152,7 @@ export default function FeaturedProject() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-4"
           >
-            <ProjectDescription description={project.description} />
+            <ProjectDescription description={project.about?.paragraphs?.join('\n')} />
 
             {/* Platforms */}
             <div className="flex items-center gap-4 text-sm text-[var(--section-text-secondary)]">
