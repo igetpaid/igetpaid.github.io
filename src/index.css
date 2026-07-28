@@ -45,6 +45,8 @@ body {
   --section-border: #e2e8f0;
   --section-muted: #94a3b8;
   --section-icon: #cbd5e1;
+  --blob-a: 0.3;
+  --blob-l: 80%;
 }
 
 html.dark {
@@ -58,6 +60,8 @@ html.dark {
   --section-border: #334155;
   --section-muted: #64748b;
   --section-icon: #475569;
+  --blob-a: 0.3;
+  --blob-l: 53%;
 }
 
 /* ─── Section Theme Classes — Light Mode ────────────────────────────── */
@@ -72,6 +76,8 @@ html.dark {
   --section-border: #e2e8f0;
   --section-muted: #94a3b8;
   --section-icon: #cbd5e1;
+  --blob-h: 213;
+  --blob-s: 83%;
 }
 
 .section-gamedev {
@@ -84,6 +90,8 @@ html.dark {
   --section-border: #e2e8f0;
   --section-muted: #4b5563;
   --section-icon: #cbd5e1;
+  --blob-h: 340;
+  --blob-s: 69%;
 }
 
 .section-ai {
@@ -96,6 +104,8 @@ html.dark {
   --section-border: #e2e8f0;
   --section-muted: #94a3b8;
   --section-icon: #cbd5e1;
+  --blob-h: 213;
+  --blob-s: 83%;
 }
 
 .section-projects {
@@ -108,8 +118,8 @@ html.dark {
   --section-border: #e2e8f0;
   --section-muted: #4b5563;
   --section-icon: #cbd5e1;
-  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-  background-size: 32px 32px;
+  --blob-h: 213;
+  --blob-s: 83%;
 }
 
 .section-blog {
@@ -122,6 +132,8 @@ html.dark {
   --section-border: #e5ddd0;
   --section-muted: #4b5563;
   --section-icon: #ccc0b0;
+  --blob-h: 37;
+  --blob-s: 83%;
 }
 
 .section-contacts {
@@ -134,8 +146,8 @@ html.dark {
   --section-border: #e2e8f0;
   --section-muted: #4b5563;
   --section-icon: #cbd5e1;
-  background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-  background-size: 32px 32px;
+  --blob-h: 213;
+  --blob-s: 83%;
 }
 
 /* ─── Section Theme Classes — Dark Mode ─────────────────────────────── */

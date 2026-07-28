@@ -12,8 +12,8 @@ export default function Hero() {
       className="section-hero relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Large blur orbs */}
-      <div className="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-vk-blue/5 blur-[40px] transform-gpu" />
-      <div className="absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-vk-blue/3 blur-[30px] transform-gpu" />
+      <div className="absolute -left-40 -top-40 h-[600px] w-[600px] transform-gpu" style={{ background: 'radial-gradient(circle closest-side, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / var(--blob-a)) 0%, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / 0) 100%)' }} />
+      <div className="absolute -right-40 bottom-0 h-[500px] w-[500px] transform-gpu" style={{ background: 'radial-gradient(circle closest-side, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / var(--blob-a)) 0%, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / 0) 100%)' }} />
 
       {/* Grid pattern overlay - removed */}
 

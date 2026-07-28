@@ -59,10 +59,10 @@ export default function Projects() {
       id="projects"
       className="section-projects relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
-      {/* Decorative: blue gradient blobs */}
-      <div className="absolute -left-60 -top-40 h-[700px] w-[700px] rounded-full bg-gradient-to-br from-vk-blue/15 via-vk-blue/5 to-transparent blur-[40px] transform-gpu" />
-      <div className="absolute -right-60 -bottom-40 h-[600px] w-[600px] rounded-full bg-gradient-to-tl from-vk-blue/12 via-blue-400/5 to-transparent blur-[30px] transform-gpu" />
-      <div className="absolute left-1/3 bottom-10 h-[300px] w-[300px] rounded-full bg-vk-blue/5 blur-[25px] transform-gpu" />
+      {/* Decorative: smooth gradient blobs (no CSS blur needed) */}
+      <div className="absolute -left-60 -top-40 h-[700px] w-[700px] transform-gpu" style={{ background: 'radial-gradient(circle closest-side, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / var(--blob-a)) 0%, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / 0) 100%)' }} />
+      <div className="absolute -right-60 -bottom-40 h-[600px] w-[600px] transform-gpu" style={{ background: 'radial-gradient(circle closest-side, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / var(--blob-a)) 0%, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / 0) 100%)' }} />
+      <div className="absolute left-1/3 bottom-10 h-[300px] w-[300px] transform-gpu" style={{ background: 'radial-gradient(circle closest-side, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / var(--blob-a)) 0%, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / 0) 100%)' }} />
 
       {/* Decorative: diagonal accent lines */}
       <svg

@@ -10,7 +10,10 @@ export default function Blog() {
       className="section-blog relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background */}
-      <div className="absolute top-20 -right-40 h-[400px] w-[400px] rounded-full bg-amber-500/5 blur-[30px] transform-gpu" />
+      <div className="absolute top-20 -right-40 h-[400px] w-[400px]" style={{ background: 'radial-gradient(circle closest-side, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / var(--blob-a)) 0%, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / 0) 100%)' }} />
+
+      {/* Test blob — left side */}
+      <div className="absolute left-[10%] top-1/3 h-[400px] w-[400px]" style={{ background: 'radial-gradient(circle closest-side, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / var(--blob-a)) 0%, hsl(var(--blob-h) var(--blob-s) var(--blob-l) / 0) 100%)' }} />
 
       {/* Diagonal lines */}
       <svg
