@@ -33,8 +33,8 @@ export default function FeaturedProject() {
       className="section-gamedev relative py-24 sm:py-32 overflow-hidden bg-[var(--section-bg)]"
     >
       {/* Background decorations */}
-      <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-gamedev-accent/10 blur-[150px]" />
-      <div className="absolute bottom-20 right-10 h-72 w-72 rounded-full bg-gamedev-secondary/10 blur-[150px]" />
+      <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-gamedev-accent/10 blur-[30px] transform-gpu" />
+      <div className="absolute bottom-20 right-10 h-72 w-72 rounded-full bg-gamedev-secondary/10 blur-[30px] transform-gpu" />
 
       {/* Diagonal lines */}
       <svg
