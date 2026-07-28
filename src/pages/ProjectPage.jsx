@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowLeft,
@@ -38,6 +38,7 @@ export default function ProjectPage() {
   const [selectedScreenshot, setSelectedScreenshot] = useState(0)
   const [hasHoveredGallery, setHasHoveredGallery] = useState(false)
   const [isGalleryHovered, setIsGalleryHovered] = useState(false)
+  const [lastManualInteraction, setLastManualInteraction] = useState(0)
 
   if (!project) {
     return (
@@ -66,10 +67,22 @@ export default function ProjectPage() {
   const sectionClass = `section-${project.category}`
   const screenshots = project.screenshots || []
 
+  useEffect(() => {
+    if (screenshots.length < 2) return
+    const timer = setInterval(() => {
+      const now = Date.now()
+      if (now - lastManualInteraction < 6000) return
+      setSelectedScreenshot((prev) => (prev + 1) % screenshots.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [lastManualInteraction, screenshots.length])
+
   const prevScreenshot = () => {
+    setLastManualInteraction(Date.now())
     setSelectedScreenshot((prev) => (prev === 0 ? screenshots.length - 1 : prev - 1))
   }
   const nextScreenshot = () => {
+    setLastManualInteraction(Date.now())
     setSelectedScreenshot((prev) => (prev === screenshots.length - 1 ? 0 : prev + 1))
   }
 
@@ -177,7 +190,7 @@ export default function ProjectPage() {
                 {screenshots.map((ss, i) => (
                   <button
                     key={i}
-                    onClick={() => setSelectedScreenshot(i)}
+                    onClick={() => { setLastManualInteraction(Date.now()); setSelectedScreenshot(i); }}
                     className={`shrink-0 w-20 h-12 rounded-lg overflow-hidden border-2 transition-all ${
                       i === selectedScreenshot
                         ? 'border-[var(--section-accent)] opacity-100'
@@ -263,7 +276,7 @@ export default function ProjectPage() {
 
                   {/* Leave a comment stub */}
                   <button
-                    onClick={() => alert('Форма комментариев появится позже')}
+                    onClick={() => alert('Оставьте комментарий к посту в ВК. Через некоторое время он отобразится здесь')}
                     className="mt-6 w-full py-3 px-4 rounded-xl border-2 border-dashed border-[var(--section-border)] text-[var(--section-text-secondary)] text-sm font-medium hover:border-[var(--section-accent)]/40 hover:text-[var(--section-accent)] transition-colors"
                   >
                     + Оставить комментарий
