@@ -142,16 +142,21 @@ export default function ProjectPage() {
           {screenshots.length > 0 && (
             <div className="mb-14">
               {/* Main image */}
-              <div
-                className="relative rounded-2xl overflow-hidden bg-black/20 border border-[var(--section-border)]"
-                onMouseEnter={() => { setHasHoveredGallery(true); setIsGalleryHovered(true) }}
-                onMouseLeave={() => setIsGalleryHovered(false)}
-              >
-                <img
-                  src={screenshots[selectedScreenshot].src}
-                  alt={screenshots[selectedScreenshot].alt}
-                  className="w-full aspect-video object-cover"
-                />
+                <div
+                  className="relative rounded-2xl overflow-hidden bg-black/20 border border-[var(--section-border)] aspect-video"
+                  onMouseEnter={() => { setHasHoveredGallery(true); setIsGalleryHovered(true) }}
+                  onMouseLeave={() => setIsGalleryHovered(false)}
+                >
+                  {screenshots.map((ss, i) => (
+                    <img
+                      key={i}
+                      src={ss.src}
+                      alt={ss.alt}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                        i === selectedScreenshot ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
+                  ))}
                 {screenshots.length > 1 && (
                   <>
                     <button
