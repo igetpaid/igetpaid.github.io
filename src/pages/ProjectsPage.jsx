@@ -81,9 +81,6 @@ export default function ProjectsPage() {
             <h1 className="text-4xl sm:text-5xl font-extrabold text-[var(--section-text)] tracking-tight">
               Проекты
             </h1>
-            <p className="mt-4 text-lg text-[var(--section-text-secondary)] max-w-2xl">
-              То, что я сделал и чем могу гордиться. Open source, десктоп, автоматизация.
-            </p>
           </motion.div>
 
           {/* Filters */}
